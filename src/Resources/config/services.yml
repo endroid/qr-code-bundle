@@ -1,33 +1,17 @@
 services:
-    Endroid\QrCode\WriterRegistryInterface: '@Endroid\QrCode\WriterRegistry'
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
 
     Endroid\QrCode\Factory\QrCodeFactory:
-        arguments: [ null, '@Endroid\QrCode\WriterRegistry' ]
+        $defaultOptions: [ ]
 
-    endroid.qrcode.twig.extension:
-        class: Endroid\QrCode\Twig\Extension\QrCodeExtension
-        arguments: [ '@endroid.qrcode.factory', '@router']
-        tags:
-            - { name: twig.extension }
-    endroid.qrcode.writer_registry:
-        class: Endroid\QrCode\WriterRegistry
-    endroid.qrcode.writer.binary_writer:
-        class: Endroid\QrCode\Writer\BinaryWriter
-        tags:
-            - { name: endroid.qrcode.writer }
-    endroid.qrcode.writer.debug_writer:
-        class: Endroid\QrCode\Writer\DebugWriter
-        tags:
-            - { name: endroid.qrcode.writer }
-    endroid.qrcode.writer.eps_writer:
-        class: Endroid\QrCode\Writer\EpsWriter
-        tags:
-            - { name: endroid.qrcode.writer }
-    endroid.qrcode.writer.png_writer:
-        class: Endroid\QrCode\Writer\PngWriter
-        tags:
-            - { name: endroid.qrcode.writer }
-    endroid.qrcode.writer.svg_writer:
-        class: Endroid\QrCode\Writer\SvgWriter
-        tags:
-            - { name: endroid.qrcode.writer }
+    Endroid\QrCode\WriterRegistryInterface: '@Endroid\QrCode\WriterRegistry'
+    Endroid\QrCode\Factory\QrCodeFactoryInterface: '@Endroid\QrCode\Factory\QrCodeFactoryInterface'
+
+    Endroid\QrCode\Twig\Extension\QrCodeExtension: ~
+
+    _instanceof:
+        Endroid\QrCode\WriterInterface:
+            tags: [ endroid.qrcode.writer ]
