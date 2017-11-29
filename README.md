@@ -44,7 +44,7 @@ endroid_qr_code:
     label_font_size: 20
     label_alignment: left # left, center or right
     label_margin: { b: 20 }
-    logo_path: '%kernel.root_dir%/../vendor/endroid/qrcode/assets/symfony.png'
+    logo_path: '%kernel.root_dir%/../vendor/endroid/qrcode/assets/images/symfony.png'
     logo_width: 150
     validate_result: false # checks if the result is readable
 ```
