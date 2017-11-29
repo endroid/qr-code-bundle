@@ -10,6 +10,12 @@ EndroidQrCodeBundle
 [![License](http://img.shields.io/packagist/l/endroid/qrcode-bundle.svg)](https://packagist.org/packages/endroid/qrcode-bundle)
 
 This Symfony lets you generate QR Codes using the [endroid/qrcode library](https://github.com/endroid/QrCode).
+It provides the following features.
+
+* Configure your defaults (like image size, default writer etc.)
+* Generate QR codes quickly from anywhere via the factory service
+* Generate QR codes directly by typing an URL like /qrcode/\<text>.png?size=300
+* Generate QR codes or URLs directly from Twig using dedicated functions
 
 ## Installation
 
@@ -43,7 +49,7 @@ endroid_qr_code:
     validate_result: false # checks if the result is readable
 ```
 
-## Using the factory
+## Generate via factory
 
 Now you can retrieve the factory from the service container and create a QR
 code. You can also pass options to override defaults set by your configuration.
@@ -52,12 +58,23 @@ code. You can also pass options to override defaults set by your configuration.
 $qrCode = $qrCodeFactory->create('QR Code', ['size' => 200]);
 ```
 
-## Using URLs
+## Generate via URL
 
 The bundle provides a controller that allows you to generate QR codes simply
-by opening an URL like https://\<yourdomain>/qrcode/\<text>.png?size=300. You
-can configure the prefix in your routing file and pass any of the existing
-options via query string.
+by opening an URL like /qrcode/\<text>.png?size=300. You can configure the
+prefix in your routing file and pass any of the existing options via query string.
+
+## Generate via Twig
+
+The bundle provides a Twig extension for generating a QR code URL, path or data
+URI. You can use the second argument of any of these functions to override any
+defaults defined by the bundle or set via your configuration.
+
+``` twig
+<img src="{{ qrcode_path(message) }}" />
+<img src="{{ qrcode_url(message, { writer: 'eps' }) }}" />
+<img src="{{ qrcode_data_uri(message, { writer: 'svg', size: 150 }) }}" />
+```
 
 ## Versioning
 
