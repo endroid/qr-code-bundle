@@ -20,8 +20,44 @@ will set up the configuration and routing for you.
 $ composer require endroid/qrcode-bundle
 ```
 
-Now you can generate a QR Code via /qrcode/<text>.png and the QR code factory
-is exposed as a service.
+## Configuration
+
+The bundle makes use of a factory to create QR codes. The default parameters
+applied by the factory can optionally be overridden via the configuration.
+
+```yaml
+endroid_qr_code:
+    writer: 'png'
+    size: 300
+    margin: 10
+    foreground_color: { r: 0, g: 0, b: 0 }
+    background_color: { r: 255, g: 255, b: 255 }
+    error_correction_level: low # low, medium, quartile or high
+    encoding: UTF-8
+    label: Scan the code
+    label_font_size: 20
+    label_alignment: left # left, center or right
+    label_margin: { b: 20 }
+    logo_path: '%kernel.root_dir%/../vendor/endroid/qrcode/assets/symfony.png'
+    logo_width: 150
+    validate_result: false # checks if the result is readable
+```
+
+## Using the factory
+
+Now you can retrieve the factory from the service container and create a QR
+code. You can also pass options to override defaults set by your configuration.
+
+```php
+$qrCode = $qrCodeFactory->create('QR Code', ['size' => 200]);
+```
+
+## Using URLs
+
+The bundle provides a controller that allows you to generate QR codes simply
+by opening an URL like https://\<yourdomain>/qrcode/\<text>.png?size=300. You
+can configure the prefix in your routing file and pass any of the existing
+options via query string.
 
 ## Versioning
 
