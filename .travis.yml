@@ -1,0 +1,17 @@
+language: php
+
+php:
+  - 7.1
+  - 7.2
+
+matrix:
+  fast_finish: true
+
+before_install:
+  - phpenv config-rm xdebug.ini
+  - composer install --no-interaction
+
+script: vendor/bin/phpunit
+
+notifications:
+  email: info@endroid.nl
