@@ -8,10 +8,11 @@ services:
         $defaultOptions: [ ]
 
     Endroid\QrCode\WriterRegistryInterface: '@Endroid\QrCode\WriterRegistry'
-    Endroid\QrCode\Factory\QrCodeFactoryInterface: '@Endroid\QrCode\Factory\QrCodeFactoryInterface'
+    Endroid\QrCode\Factory\QrCodeFactoryInterface: '@Endroid\QrCode\Factory\QrCodeFactory'
 
     Endroid\QrCode\Twig\Extension\QrCodeExtension: ~
+    Endroid\QrCode\WriterRegistry: ~
 
     _instanceof:
-        Endroid\QrCode\WriterInterface:
+        Endroid\QrCode\Writer\WriterInterface:
             tags: [ endroid.qrcode.writer ]

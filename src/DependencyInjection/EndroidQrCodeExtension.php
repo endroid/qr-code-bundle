@@ -23,9 +23,9 @@ class EndroidQrCodeExtension extends Extension
         $config = $processor->processConfiguration(new Configuration(), $configs);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
+        $loader->load('services.yaml');
 
-        $factoryDefinition = $container->getDefinition('endroid.qrcode.factory');
-        $factoryDefinition->replaceArgument(0, $config);
+        $factoryDefinition = $container->getDefinition('Endroid\QrCode\Factory\QrCodeFactory');
+        $factoryDefinition->setArgument(0, $config);
     }
 }
