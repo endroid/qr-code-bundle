@@ -9,8 +9,16 @@
 
 namespace Endroid\QrCodeBundle;
 
+use Endroid\QrCodeBundle\DependencyInjection\Compiler\WriterRegistryPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class EndroidQrCodeBundle extends Bundle
 {
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new WriterRegistryPass());
+    }
 }
