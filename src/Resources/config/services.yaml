@@ -17,7 +17,6 @@ services:
 
     Endroid\QrCode\Factory\QrCodeFactoryInterface: '@Endroid\QrCode\Factory\QrCodeFactory'
     Endroid\QrCode\Factory\QrCodeFactory:
-        $defaultOptions: [ ]
         public: true
 
     Endroid\QrCode\Writer\BinaryWriter: ~
