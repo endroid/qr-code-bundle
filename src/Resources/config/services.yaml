@@ -20,6 +20,9 @@ services:
         $defaultOptions: [ ]
         public: true
 
+    Endroid\QrCode\Twig\Extension\QrCodeExtension:
+        public: true
+
     Endroid\QrCode\Writer\BinaryWriter: ~
     Endroid\QrCode\Writer\DebugWriter: ~
     Endroid\QrCode\Writer\EpsWriter: ~
