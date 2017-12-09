@@ -17,7 +17,8 @@ services:
 
     Endroid\QrCode\Factory\QrCodeFactoryInterface: '@Endroid\QrCode\Factory\QrCodeFactory'
     Endroid\QrCode\Factory\QrCodeFactory:
-        $defaultOptions: [ ]
+        arguments:
+            $defaultOptions: [ ]
         public: true
 
     Endroid\QrCode\Twig\Extension\QrCodeExtension:
