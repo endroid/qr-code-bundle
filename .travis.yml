@@ -1,15 +1,30 @@
 language: php
 
-php:
-  - 7.1
-  - 7.2
+sudo: false
+
+cache:
+  directories:
+    - "$HOME/.composer/cache/files"
+
+env:
+  - COMPOSER_FLAGS="--prefer-stable"
 
 matrix:
-  fast_finish: true
+  include:
+    - php: 7.1
+      env: COMPOSER_FLAGS="--prefer-lowest"
+    - php: 7.2
+    - php: 7.2
+      env: COMPOSER_FLAGS="" SYMFONY_VERSION="dev-master"
+  allow_failures:
+    - php: 7.2
+      env: COMPOSER_FLAGS="" SYMFONY_VERSION="dev-master"
 
 before_install:
+  - if [[ "$SYMFONY_VERSION" != "" ]]; then composer require --no-update symfony/symfony:${SYMFONY_VERSION}; fi
   - phpenv config-rm xdebug.ini
-  - composer install --no-interaction
+
+install: composer update $COMPOSER_FLAGS --prefer-dist
 
 script: vendor/bin/phpunit
 
