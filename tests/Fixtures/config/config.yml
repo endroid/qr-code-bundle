@@ -1,0 +1,21 @@
+framework:
+    secret: test
+    test: true
+    router:
+        resource: '%kernel.root_dir%/../../src/Resources/config/routes.yaml'
+
+endroid_qr_code:
+    writer: 'png'
+    size: 300
+    margin: 10
+    foreground_color: { r: 0, g: 0, b: 0 }
+    background_color: { r: 255, g: 255, b: 255 }
+    error_correction_level: low
+    encoding: UTF-8
+    label: Scan the code
+    label_font_size: 20
+    label_alignment: left
+    label_margin: { b: 20 }
+    logo_path: '%kernel.root_dir%/../../vendor/endroid/qrcode/assets/images/symfony.png'
+    logo_width: 150
+    validate_result: false
