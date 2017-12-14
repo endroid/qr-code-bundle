@@ -26,7 +26,7 @@ class ControllerTest extends WebTestCase
         $client = self::createClient(['config_file' => 'controller.yaml']);
         $crawler = $client->request('GET', '/demo');
 
-        self::assertContains('data:image/svg+xml;base64,', $crawler->html());
+        $this->assertContains('data:image/svg+xml;base64,', $crawler->html());
     }
 
     public function testGenerate(): void
@@ -38,8 +38,8 @@ class ControllerTest extends WebTestCase
 
         $response = $client->getResponse();
 
-        self::assertSame('image/png', $response->headers->get('content-type'));
-        self::assertNotEmpty($response->getContent());
+       $this->assertSame('image/png', $response->headers->get('content-type'));
+       $this->assertNotEmpty($response->getContent());
     }
 
     public function testGenerateInvalidExtension(): void
