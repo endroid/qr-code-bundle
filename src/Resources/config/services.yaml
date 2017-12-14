@@ -21,8 +21,16 @@ services:
             $defaultOptions: [ ]
         public: true
 
-    Endroid\QrCode\Twig\Extension\QrCodeExtension:
+    Endroid\QrCode\Twig\Extension\QrCodeUriExtension:
         public: true
+        arguments:
+            - '@Endroid\QrCode\Factory\QrCodeFactory'
+
+    Endroid\QrCodeBundle\Twig\QrCodeRoutingExtension:
+        public: true
+        arguments:
+            - '@Endroid\QrCode\Factory\QrCodeFactory'
+            - '@router'
 
     Endroid\QrCode\Writer\BinaryWriter: ~
     Endroid\QrCode\Writer\DebugWriter: ~
