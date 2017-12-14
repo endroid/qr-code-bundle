@@ -8,10 +8,6 @@ services:
         Endroid\QrCode\Writer\WriterInterface:
             tags: ['endroid.qrcode.writer']
 
-    Endroid\QrCodeBundle\Controller\:
-        resource: '../../Controller'
-        tags: ['controller.service_arguments']
-
     Endroid\QrCode\WriterRegistryInterface: '@Endroid\QrCode\WriterRegistry'
     Endroid\QrCode\WriterRegistry: ~
 
@@ -25,12 +21,6 @@ services:
         public: true
         arguments:
             - '@Endroid\QrCode\Factory\QrCodeFactory'
-
-    Endroid\QrCodeBundle\Twig\QrCodeRoutingExtension:
-        public: true
-        arguments:
-            - '@Endroid\QrCode\Factory\QrCodeFactory'
-            - '@router'
 
     Endroid\QrCode\Writer\BinaryWriter: ~
     Endroid\QrCode\Writer\DebugWriter: ~

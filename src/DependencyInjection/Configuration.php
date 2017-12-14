@@ -23,6 +23,10 @@ class Configuration implements ConfigurationInterface
         $treeBuilder
             ->root('endroid_qr_code')
                 ->children()
+                    ->booleanNode('enable_remote_images')
+                        ->defaultTrue()
+                        ->info('Enables the qrCodePathFunction and qrCodeUrlFunction twig functions to create non-embedded qr codes.')
+                    ->end()
                     ->scalarNode('writer')->defaultValue('png')->end()
                     ->integerNode('size')->min(0)->end()
                     ->integerNode('margin')->min(0)->end()

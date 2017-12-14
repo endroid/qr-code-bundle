@@ -1,10 +1,9 @@
 framework:
     secret: test
     test: true
-    router:
-        resource: '%kernel.root_dir%/../../src/Resources/config/routes.yaml'
 
 endroid_qr_code:
+    enable_remote_images: false
     writer: 'png'
     size: 300
     margin: 10

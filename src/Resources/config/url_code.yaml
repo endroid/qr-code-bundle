@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        public: true
+        autoconfigure: true
+
+    Endroid\QrCodeBundle\Controller\QrCodeDemoController:
+        $templating: '@twig'
+
+    Endroid\QrCodeBundle\Controller\QrCodeGenerateController:
+        $qrCodeFactory: '@Endroid\QrCode\Factory\QrCodeFactory'
+
+    Endroid\QrCodeBundle\Twig\QrCodeRoutingExtension:
+        arguments:
+            - '@Endroid\QrCode\Factory\QrCodeFactory'
+            - '@router'

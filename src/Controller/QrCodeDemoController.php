@@ -14,9 +14,16 @@ use Twig\Environment;
 
 class QrCodeDemoController
 {
-    public function __invoke(Environment $twig): Response
+    private $templating;
+
+    public function __construct(Environment $templating)
     {
-        $renderedView = $twig->render('@EndroidQrCode/QrCode/demo.html.twig', ['message' => 'QR Code']);
+        $this->templating = $templating;
+    }
+
+    public function __invoke(): Response
+    {
+        $renderedView = $this->templating->render('@EndroidQrCode/QrCode/demo.html.twig', ['message' => 'QR Code']);
 
         return new Response($renderedView, Response::HTTP_OK);
     }
