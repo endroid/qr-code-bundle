@@ -10,6 +10,5 @@ services:
         $qrCodeFactory: '@Endroid\QrCode\Factory\QrCodeFactory'
 
     Endroid\QrCodeBundle\Twig\QrCodeRoutingExtension:
-        arguments:
-            - '@Endroid\QrCode\Factory\QrCodeFactory'
-            - '@router'
+        $qrCodeFactory: '@Endroid\QrCode\Factory\QrCodeFactory'
+        $urlGenerator: '@router'
