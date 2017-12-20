@@ -23,6 +23,9 @@ class CompilationTest extends KernelTestCase
     {
         self::bootKernel();
 
-        $this->assertNotNull(self::$kernel->getContainer());
+        $container = self::$kernel->getContainer();
+
+        $this->assertNotNull($container);
+        $this->assertFalse($container->has('Endroid\QrCodeBundle\Twig\QrCodeRoutingExtension'));
     }
 }

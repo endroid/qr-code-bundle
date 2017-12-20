@@ -14,19 +14,23 @@
     ],
     "require": {
         "php": ">=7.1",
-        "endroid/qrcode": "^3.0",
+        "endroid/qrcode": "^3.1",
         "symfony/twig-bundle": "^3.0|^4.0",
         "twig/twig": "^1.34.2|^2.4.4",
         "symfony/http-foundation": "^3.2|^4.0",
         "symfony/dependency-injection": "^3.3|^4.0",
         "symfony/config": "^3.3|^4.0",
-        "symfony/yaml": "^3.3|^4.0",
-        "symfony/routing": "^3.3|^4.0"
+        "symfony/yaml": "^3.3|^4.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7|^6.0",
         "symfony/framework-bundle": "^3.3|^4.0",
-        "symfony/phpunit-bridge": "^3.3|^4.0"
+        "symfony/phpunit-bridge": "^3.3|^4.0",
+        "symfony/routing": "^3.3|^4.0",
+        "symfony/browser-kit": "^3.3|^3.4"
+    },
+    "suggest": {
+        "symfony/routing": "To enable controllers that generate QR Codes."
     },
     "autoload": {
         "psr-4": {
