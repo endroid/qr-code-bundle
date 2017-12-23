@@ -38,8 +38,8 @@ class ControllerTest extends WebTestCase
 
         $response = $client->getResponse();
 
-       $this->assertSame('image/png', $response->headers->get('content-type'));
-       $this->assertNotEmpty($response->getContent());
+        $this->assertSame('image/png', $response->headers->get('content-type'));
+        $this->assertNotEmpty($response->getContent());
     }
 
     public function testGenerateInvalidExtension(): void
