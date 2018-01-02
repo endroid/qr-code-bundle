@@ -23,7 +23,7 @@ class WriterRegistryPass implements CompilerPassInterface
 
         $writerRegistryDefinition = $container->findDefinition('Endroid\QrCode\WriterRegistryInterface');
 
-        $taggedServices = $container->findTaggedServiceIds('endroid.qrcode.writer');
+        $taggedServices = $container->findTaggedServiceIds('endroid.qr_code.writer');
         foreach ($taggedServices as $id => $tags) {
             $writerRegistryDefinition->addMethodCall('addWriter', [new Reference($id)]);
         }

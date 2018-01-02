@@ -6,7 +6,7 @@ services:
 
     _instanceof:
         Endroid\QrCode\Writer\WriterInterface:
-            tags: ['endroid.qrcode.writer']
+            tags: ['endroid.qr_code.writer']
 
     Endroid\QrCode\WriterRegistryInterface: '@Endroid\QrCode\WriterRegistry'
     Endroid\QrCode\WriterRegistry: ~
