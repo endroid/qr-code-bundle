@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": ">=7.1",
-        "endroid/qrcode": "^3.1",
+        "endroid/qr-code": "^3.1",
         "symfony/twig-bundle": "^3.0|^4.0",
         "twig/twig": "^1.34.2|^2.4.4",
         "symfony/http-foundation": "^3.2|^4.0",
