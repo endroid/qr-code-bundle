@@ -8,8 +8,8 @@
 [![Monthly Downloads](http://img.shields.io/packagist/dm/endroid/qr-code-bundle.svg)](https://packagist.org/packages/endroid/qr-code-bundle)
 [![License](http://img.shields.io/packagist/l/endroid/qr-code-bundle.svg)](https://packagist.org/packages/endroid/qr-code-bundle)
 
-This Symfony lets you generate QR Codes using the [endroid/qr-code library](https://github.com/endroid/QrCode).
-It provides the following features.
+This Symfony lets you generate QR Codes using the [endroid/qr-code](https://github.com/endroid/QrCode)
+library. It provides the following features.
 
 * Configure your defaults (like image size, default writer etc.)
 * Generate QR codes quickly from anywhere via the factory service
