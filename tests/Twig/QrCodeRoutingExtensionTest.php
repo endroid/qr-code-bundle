@@ -23,7 +23,7 @@ class QrCodeRoutingExtensionTest extends TestCase
         $extension = new QrCodeRoutingExtension(new QrCodeFactory(), $urlGenerator->reveal());
 
         $urlGenerator
-            ->generate('endroid_qrcode_generate', ['extension' => 'png', 'text' => 'Foobar'], UrlGeneratorInterface::ABSOLUTE_URL)
+            ->generate('endroid_qr_code_generate', ['extension' => 'png', 'text' => 'Foobar'], UrlGeneratorInterface::ABSOLUTE_URL)
             ->willReturn('https://some-qr-code-url');
 
         $this->assertSame('https://some-qr-code-url', $extension->qrCodeUrlFunction('Foobar'));
@@ -35,7 +35,7 @@ class QrCodeRoutingExtensionTest extends TestCase
         $extension = new QrCodeRoutingExtension(new QrCodeFactory(), $urlGenerator->reveal());
 
         $urlGenerator
-            ->generate('endroid_qrcode_generate', ['extension' => 'png', 'text' => 'Foobar'], UrlGeneratorInterface::ABSOLUTE_PATH)
+            ->generate('endroid_qr_code_generate', ['extension' => 'png', 'text' => 'Foobar'], UrlGeneratorInterface::ABSOLUTE_PATH)
             ->willReturn('/some-qr-code-path');
 
         $this->assertSame('/some-qr-code-path', $extension->qrCodePathFunction('Foobar'));
@@ -51,7 +51,7 @@ class QrCodeRoutingExtensionTest extends TestCase
         $factory->create('Foobar', [])->willReturn($code);
 
         $urlGenerator
-            ->generate('endroid_qrcode_generate', ['text' => 'Foobar'], UrlGeneratorInterface::ABSOLUTE_PATH)
+            ->generate('endroid_qr_code_generate', ['text' => 'Foobar'], UrlGeneratorInterface::ABSOLUTE_PATH)
             ->willReturn('/some-qr-code-path');
 
         $this->assertSame('/some-qr-code-path', $extension->getQrCodeReference('Foobar', [], UrlGeneratorInterface::ABSOLUTE_PATH));
