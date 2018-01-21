@@ -55,6 +55,6 @@ final class QrCodeRoutingExtension extends Twig_Extension
 
         $options['text'] = $text;
 
-        return $this->urlGenerator->generate('endroid_qr_code_generate', $options, $referenceType);
+        return $this->urlGenerator->generate('qr_code_generate', $options, $referenceType);
     }
 }
