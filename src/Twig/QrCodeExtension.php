@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig_Extension;
 use Twig_SimpleFunction;
 
-final class QrCodeRoutingExtension extends Twig_Extension
+final class QrCodeExtension extends Twig_Extension
 {
     private $qrCodeFactory;
     private $urlGenerator;
@@ -31,6 +31,7 @@ final class QrCodeRoutingExtension extends Twig_Extension
         return [
             new Twig_SimpleFunction('qr_code_path', [$this, 'qrCodePathFunction']),
             new Twig_SimpleFunction('qr_code_url', [$this, 'qrCodeUrlFunction']),
+            new Twig_SimpleFunction('qr_code_data_uri', [$this, 'qrCodeDataUriFunction']),
         ];
     }
 
@@ -56,5 +57,10 @@ final class QrCodeRoutingExtension extends Twig_Extension
         $options['text'] = $text;
 
         return $this->urlGenerator->generate('qr_code_generate', $options, $referenceType);
+    }
+
+    public function qrCodeDataUriFunction(string $text, array $options = []): string
+    {
+        return $this->qrCodeFactory->create($text, $options)->writeDataUri();
     }
 }

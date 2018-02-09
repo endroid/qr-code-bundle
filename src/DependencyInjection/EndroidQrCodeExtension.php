@@ -25,9 +25,5 @@ class EndroidQrCodeExtension extends Extension
 
         $factoryDefinition = $container->getDefinition('Endroid\QrCode\Factory\QrCodeFactory');
         $factoryDefinition->setArgument(0, $config);
-
-        if ($config['enable_remote_images']) {
-            $loader->load('url_code.yaml');
-        }
     }
 }

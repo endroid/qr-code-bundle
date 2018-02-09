@@ -23,14 +23,7 @@
         "symfony/yaml": "^3.3|^4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.7|^6.0",
-        "symfony/framework-bundle": "^3.3|^4.0",
-        "symfony/phpunit-bridge": "^3.3|^4.0",
-        "symfony/routing": "^3.3|^4.0",
-        "symfony/browser-kit": "^3.3|^3.4"
-    },
-    "suggest": {
-        "symfony/routing": "To enable controllers that generate QR Codes."
+        "endroid/bundle-test": "^1.0"
     },
     "autoload": {
         "psr-4": {

@@ -1,5 +1,0 @@
-framework:
-    secret: test
-    test: true
-    router:
-        resource: '%kernel.root_dir%/../../src/Resources/config/routes.yaml'

@@ -23,8 +23,6 @@ class QrCodeDemoController
 
     public function __invoke(): Response
     {
-        $renderedView = $this->templating->render('@EndroidQrCode/QrCode/demo.html.twig', ['message' => 'QR Code']);
-
-        return new Response($renderedView, Response::HTTP_OK);
+        return new Response($this->templating->render('@EndroidQrCode/QrCode/demo.html.twig', ['message' => 'QR Code']));
     }
 }
