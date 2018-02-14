@@ -4,6 +4,10 @@ php:
   - 7.1
   - 7.2
 
+env:
+  - COMPOSER_OPTS="--prefer-lowest"
+  - COMPOSER_OPTS=""
+
 matrix:
   fast_finish: true
 
