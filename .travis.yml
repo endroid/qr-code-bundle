@@ -13,9 +13,13 @@ matrix:
 
 before_install:
   - phpenv config-rm xdebug.ini
-  - composer install --no-interaction
+  - composer self-update
 
-script: vendor/bin/simple-phpunit
+install:
+  - composer update --no-interaction --prefer-dist $COMPOSER_OPTS
+
+script:
+  - vendor/bin/simple-phpunit
 
 notifications:
   email: info@endroid.nl
