@@ -1,13 +1,16 @@
 language: php
 
+sudo: false
+
 php:
   - 7.1
   - 7.2
   - nightly
 
 env:
-  - COMPOSER_OPTS="--prefer-lowest"
-  - COMPOSER_OPTS=""
+  - COMPOSER_FLAGS="--prefer-lowest"
+  - SYMFONY_VERSION="^3.4"
+  - COMPOSER_FLAGS=""
 
 matrix:
   fast_finish: true
@@ -15,14 +18,14 @@ matrix:
     - php: nightly
 
 before_install:
-  - phpenv config-rm xdebug.ini
   - composer self-update
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require --dev --no-update symfony/symfony:"$SYMFONY_VERSION"; fi;
 
 install:
-  - composer update --no-interaction --prefer-dist $COMPOSER_OPTS
+  - composer update --no-interaction --prefer-dist $COMPOSER_FLAGS
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/simple-phpunit
 
 notifications:
   email: info@endroid.nl
