@@ -16,7 +16,7 @@
         "php": ">=7.1",
         "endroid/qr-code": "^3.2.5",
         "symfony/framework-bundle": "^3.4|^4.0",
-        "symfony/twig-bundle": "^3.4|4.0",
+        "symfony/twig-bundle": "^3.4|^4.0",
         "symfony/yaml": "^3.4|^4.0"
     },
     "require-dev": {
