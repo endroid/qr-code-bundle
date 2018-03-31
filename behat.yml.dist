@@ -1,0 +1,27 @@
+default:
+    autoload:
+        '': vendor/endroid/bundle-test/features/bootstrap
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                env: test
+                debug: true
+                bootstrap: vendor/endroid/bundle-test/tests/bootstrap.php
+                class: Endroid\BundleTest\Kernel
+        Behat\MinkExtension:
+            base_url: http://0.0.0.0:9090
+            goutte:
+                guzzle_parameters:
+                    verify: false
+            selenium2:
+                browser: chrome
+                wd_host: http://selenium_hub:4444/wd/hub
+                capabilities:
+                    marionette: true
+                    chrome:
+                        switches: ['start-fullscreen', 'start-maximized', 'no-sandbox']
+            javascript_session: selenium2
+    suites:
+        default:
+            contexts:
+                - FeatureContext
