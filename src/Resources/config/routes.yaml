@@ -3,9 +3,4 @@ qr_code_generate:
     requirements:
         text: "[\\w\\W]+"
     defaults:
-        _controller: Endroid\QrCodeBundle\Controller\QrCodeGenerateController
-
-qr_code_demo:
-    path: /demo
-    defaults:
-        _controller: Endroid\QrCodeBundle\Controller\QrCodeDemoController
+        _controller: Endroid\QrCodeBundle\Controller\GenerateController
