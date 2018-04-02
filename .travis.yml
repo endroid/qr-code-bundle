@@ -5,6 +5,12 @@ sudo: false
 services:
   - mysql
 
+addons:
+  chrome: stable
+  hosts:
+    - mariadb
+    - selenium_hub
+
 php:
   - 7.1
   - 7.2
