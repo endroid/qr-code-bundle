@@ -18,12 +18,15 @@ library. It provides the following features.
 
 ## Installation
 
-Use [Composer](https://getcomposer.org/) to install the library. Symfony Flex
-will set up the configuration and routing for you.
+Use [Composer](https://getcomposer.org/) to install the library.
 
 ``` bash
 $ composer require endroid/qr-code-bundle
 ```
+
+Symfony Flex will set up the configuration and routing for you. If you want
+to do this yourself, you can find all information necessary in
+[the recipe](https://github.com/symfony/recipes-contrib/tree/master/endroid/qr-code-bundle).
 
 ## Configuration
 
