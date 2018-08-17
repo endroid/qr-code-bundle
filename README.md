@@ -35,7 +35,7 @@ applied by the factory can optionally be overridden via the configuration.
 
 ```yaml
 endroid_qr_code:
-    writer: 'png'
+    writer: 'svg'
     size: 300
     margin: 10
     foreground_color: { r: 0, g: 0, b: 0 }
@@ -49,6 +49,8 @@ endroid_qr_code:
     logo_path: '%kernel.root_dir%/../vendor/endroid/qr-code/assets/images/symfony.png'
     logo_width: 150
     validate_result: false # checks if the result is readable
+    writer_options:
+        exclude_xml_declaration: true
 ```
 
 ## Generate via factory
