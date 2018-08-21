@@ -54,6 +54,7 @@ class Configuration implements ConfigurationInterface
                     ->end()
                     ->scalarNode('logo_path')->end()
                     ->integerNode('logo_width')->end()
+                    ->integerNode('logo_height')->end()
                     ->scalarNode('label')->end()
                     ->integerNode('label_font_size')->end()
                     ->scalarNode('label_font_path')->end()
