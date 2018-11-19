@@ -37,4 +37,5 @@ script:
   - vendor/bin/bundle-test
 
 notifications:
-  email: info@endroid.nl
+  email:
+    - info@endroid.nl
