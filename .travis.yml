@@ -14,17 +14,12 @@ addons:
 php:
   - 7.1
   - 7.2
-  - nightly
+  - 7.3
 
 env:
   - COMPOSER_FLAGS="--prefer-lowest"
   - SYMFONY_VERSION="^3.4"
   - COMPOSER_FLAGS=""
-
-matrix:
-  fast_finish: true
-  allow_failures:
-    - php: nightly
 
 before_install:
   - composer self-update
