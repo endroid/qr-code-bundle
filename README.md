@@ -24,9 +24,8 @@ Use [Composer](https://getcomposer.org/) to install the library.
 $ composer require endroid/qr-code-bundle
 ```
 
-Symfony Flex will set up the configuration and routing for you. If you want
-to do this yourself, you can find all information necessary in
-[the recipe](https://github.com/symfony/recipes-contrib/tree/master/endroid/qr-code-bundle).
+When you use Symfony, the [installer](https://github.com/endroid/installer)
+makes sure that services are automatically wired.
 
 ## Configuration
 
