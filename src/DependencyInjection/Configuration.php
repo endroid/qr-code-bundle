@@ -22,7 +22,13 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('endroid_qr_code');
 
-        $treeBuilder->getRootNode()
+        if (method_exists($treeBuilder, 'getRootNode')) {
+            $rootNode = $treeBuilder->getRootNode();
+        } else {
+            $rootNode = $treeBuilder->root('endroid_qr_code');
+        }
+
+        $rootNode
             ->children()
                 ->scalarNode('writer')->defaultValue('png')->end()
                 ->arrayNode('writer_options')
