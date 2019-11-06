@@ -12,14 +12,14 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.2",
         "endroid/qr-code": "^3.4.4",
         "symfony/framework-bundle": "^3.4||^4.0",
         "symfony/twig-bundle": "^3.4||^4.0",
         "symfony/yaml": "^3.4||^4.0"
     },
     "require-dev": {
-        "endroid/bundle-test": "dev-master"
+        "endroid/test": "dev-master"
     },
     "autoload": {
         "psr-4": {

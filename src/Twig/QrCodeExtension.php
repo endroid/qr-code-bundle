@@ -14,8 +14,8 @@ namespace Endroid\QrCodeBundle\Twig;
 use Endroid\QrCode\Factory\QrCodeFactoryInterface;
 use Endroid\QrCode\QrCode;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Twig\TwigFunction;
 use Twig_Extension;
-use Twig_SimpleFunction;
 
 final class QrCodeExtension extends Twig_Extension
 {
@@ -28,12 +28,12 @@ final class QrCodeExtension extends Twig_Extension
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function getFunctions(): array
+    public function getFunctions()
     {
         return [
-            new Twig_SimpleFunction('qr_code_path', [$this, 'qrCodePathFunction']),
-            new Twig_SimpleFunction('qr_code_url', [$this, 'qrCodeUrlFunction']),
-            new Twig_SimpleFunction('qr_code_data_uri', [$this, 'qrCodeDataUriFunction']),
+            new TwigFunction('qr_code_path', [$this, 'qrCodePathFunction']),
+            new TwigFunction('qr_code_url', [$this, 'qrCodeUrlFunction']),
+            new TwigFunction('qr_code_data_uri', [$this, 'qrCodeDataUriFunction']),
         ];
     }
 
