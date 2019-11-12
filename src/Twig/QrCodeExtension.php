@@ -11,58 +11,17 @@ declare(strict_types=1);
 
 namespace Endroid\QrCodeBundle\Twig;
 
-use Endroid\QrCode\Factory\QrCodeFactoryInterface;
-use Endroid\QrCode\QrCode;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Twig_Extension;
-use Twig_SimpleFunction;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-final class QrCodeExtension extends Twig_Extension
+final class QrCodeExtension extends AbstractExtension
 {
-    private $qrCodeFactory;
-    private $urlGenerator;
-
-    public function __construct(QrCodeFactoryInterface $qrCodeFactory, UrlGeneratorInterface $urlGenerator)
-    {
-        $this->qrCodeFactory = $qrCodeFactory;
-        $this->urlGenerator = $urlGenerator;
-    }
-
     public function getFunctions(): array
     {
         return [
-            new Twig_SimpleFunction('qr_code_path', [$this, 'qrCodePathFunction']),
-            new Twig_SimpleFunction('qr_code_url', [$this, 'qrCodeUrlFunction']),
-            new Twig_SimpleFunction('qr_code_data_uri', [$this, 'qrCodeDataUriFunction']),
+            new TwigFunction('qr_code_path', [QrCodeRuntime::class, 'qrCodePathFunction']),
+            new TwigFunction('qr_code_url', [QrCodeRuntime::class, 'qrCodeUrlFunction']),
+            new TwigFunction('qr_code_data_uri', [QrCodeRuntime::class, 'qrCodeDataUriFunction']),
         ];
-    }
-
-    public function qrCodeUrlFunction(string $text, array $options = []): string
-    {
-        return $this->getQrCodeReference($text, $options, UrlGeneratorInterface::ABSOLUTE_URL);
-    }
-
-    public function qrCodePathFunction(string $text, array $options = []): string
-    {
-        return $this->getQrCodeReference($text, $options, UrlGeneratorInterface::ABSOLUTE_PATH);
-    }
-
-    public function getQrCodeReference(string $text, array $options = [], int $referenceType): string
-    {
-        $qrCode = $this->qrCodeFactory->create($text, $options);
-
-        if ($qrCode instanceof QrCode) {
-            $supportedExtensions = $qrCode->getWriter()->getSupportedExtensions();
-            $options['extension'] = current($supportedExtensions);
-        }
-
-        $options['text'] = $text;
-
-        return $this->urlGenerator->generate('qr_code_generate', $options, $referenceType);
-    }
-
-    public function qrCodeDataUriFunction(string $text, array $options = []): string
-    {
-        return $this->qrCodeFactory->create($text, $options)->writeDataUri();
     }
 }
