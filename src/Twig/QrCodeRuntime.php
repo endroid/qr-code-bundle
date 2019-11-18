@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
 
 /**
- * Class QrCodeRuntime
+ * Class QrCodeRuntime.
  *
  * @author Quentin Dequippe <quentin@dequippe.tech>
  */

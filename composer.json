@@ -35,5 +35,8 @@
         "branch-alias": {
             "dev-master": "3.x-dev"
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
