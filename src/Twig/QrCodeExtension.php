@@ -14,7 +14,7 @@ namespace Endroid\QrCodeBundle\Twig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-final class QrCodeExtension extends AbstractExtension
+class QrCodeExtension extends AbstractExtension
 {
     public function getFunctions(): array
     {
