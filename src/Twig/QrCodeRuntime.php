@@ -16,11 +16,6 @@ use Endroid\QrCode\QrCode;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
 
-/**
- * Class QrCodeRuntime.
- *
- * @author Quentin Dequippe <quentin@dequippe.tech>
- */
 final class QrCodeRuntime implements RuntimeExtensionInterface
 {
     private $qrCodeFactory;

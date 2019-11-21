@@ -27,6 +27,4 @@ services:
     Endroid\QrCode\Factory\QrCodeFactoryInterface: '@Endroid\QrCode\Factory\QrCodeFactory'
     Endroid\QrCode\Factory\QrCodeFactory: ~
 
-    Endroid\QrCodeBundle\Twig\QrCodeExtension:
-        $qrCodeFactory: '@Endroid\QrCode\Factory\QrCodeFactory'
-        $urlGenerator: '@router'
+    Endroid\QrCodeBundle\Twig\QrCodeExtension: ~
