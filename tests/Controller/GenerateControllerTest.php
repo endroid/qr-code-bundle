@@ -11,9 +11,9 @@ declare(strict_types=1);
 
 namespace Endroid\QrCodeBundle\Tests;
 
-use Endroid\BundleTest\BundleTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class GenerateControllerTest extends BundleTestCase
+class GenerateControllerTest extends WebTestCase
 {
     public function testGenerateController()
     {
