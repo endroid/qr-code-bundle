@@ -28,3 +28,4 @@ services:
     Endroid\QrCode\Factory\QrCodeFactory: ~
 
     Endroid\QrCodeBundle\Twig\QrCodeExtension: ~
+    Endroid\QrCodeBundle\Twig\QrCodeRuntime: ~
