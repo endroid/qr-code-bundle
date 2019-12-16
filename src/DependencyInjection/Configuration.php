@@ -23,10 +23,10 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('endroid_qr_code');
 
-        if (method_exists($treeBuilder, 'root')) {
-            $rootNode = $treeBuilder->root('endroid_qr_code');
-        } else {
+        if (method_exists($treeBuilder, 'getRootNode')) {
             $rootNode = $treeBuilder->getRootNode();
+        } else {
+            $rootNode = $treeBuilder->root('endroid_qr_code');
         }
 
         $rootNode
