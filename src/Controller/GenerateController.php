@@ -14,8 +14,8 @@ namespace Endroid\QrCodeBundle\Controller;
 use Endroid\QrCode\Exception\UnsupportedExtensionException;
 use Endroid\QrCode\Factory\QrCodeFactoryInterface;
 use Endroid\QrCode\QrCode;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class GenerateController
