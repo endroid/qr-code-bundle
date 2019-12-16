@@ -26,6 +26,7 @@ class Configuration implements ConfigurationInterface
         if (method_exists($treeBuilder, 'getRootNode')) {
             $rootNode = $treeBuilder->getRootNode();
         } else {
+            /** @psalm-suppress UndefinedMethod */
             $rootNode = $treeBuilder->root('endroid_qr_code');
         }
 
