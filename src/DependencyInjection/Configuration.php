@@ -21,6 +21,7 @@ class Configuration implements ConfigurationInterface
     /** @psalm-suppress PossiblyUndefinedMethod */
     public function getConfigTreeBuilder(): TreeBuilder
     {
+        /** @psalm-suppress TooManyArguments */
         $treeBuilder = new TreeBuilder('endroid_qr_code');
 
         if (method_exists($treeBuilder, 'getRootNode')) {
