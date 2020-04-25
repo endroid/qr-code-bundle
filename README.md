@@ -63,6 +63,15 @@ code. You can also pass options to override defaults set by your configuration.
 $qrCode = $qrCodeFactory->create('QR Code', ['size' => 200]);
 ```
 
+## QR Code Response
+
+The bundle also provides a response object to ease rendering of the resulting
+image by automatically saving to string and setting the correct content type.
+
+```php
+$response = new QrCodeResponse($qrCode);
+```
+
 ## Generate via URL
 
 The bundle provides a controller that allows you to generate QR codes simply

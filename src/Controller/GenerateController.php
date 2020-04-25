@@ -14,6 +14,7 @@ namespace Endroid\QrCodeBundle\Controller;
 use Endroid\QrCode\Exception\UnsupportedExtensionException;
 use Endroid\QrCode\Factory\QrCodeFactoryInterface;
 use Endroid\QrCode\QrCode;
+use Endroid\QrCodeBundle\Response\QrCodeResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -41,6 +42,6 @@ class GenerateController
             }
         }
 
-        return new Response($qrCode->writeString(), Response::HTTP_OK, ['Content-Type' => $qrCode->getContentType()]);
+        return new QrCodeResponse($qrCode);
     }
 }
