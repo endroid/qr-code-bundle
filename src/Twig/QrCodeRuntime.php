@@ -27,16 +27,19 @@ final class QrCodeRuntime implements RuntimeExtensionInterface
         $this->urlGenerator = $urlGenerator;
     }
 
+    /** @param array<mixed> $options */
     public function qrCodeUrlFunction(string $text, array $options = []): string
     {
         return $this->getQrCodeReference($text, $options, UrlGeneratorInterface::ABSOLUTE_URL);
     }
 
+    /** @param array<mixed> $options */
     public function qrCodePathFunction(string $text, array $options = []): string
     {
         return $this->getQrCodeReference($text, $options, UrlGeneratorInterface::ABSOLUTE_PATH);
     }
 
+    /** @param array<mixed> $options */
     public function getQrCodeReference(string $text, array $options = [], int $referenceType = UrlGeneratorInterface::ABSOLUTE_URL): string
     {
         $qrCode = $this->qrCodeFactory->create($text, $options);
@@ -51,6 +54,7 @@ final class QrCodeRuntime implements RuntimeExtensionInterface
         return $this->urlGenerator->generate('qr_code_generate', $options, $referenceType);
     }
 
+    /** @param array<mixed> $options */
     public function qrCodeDataUriFunction(string $text, array $options = []): string
     {
         return $this->qrCodeFactory->create($text, $options)->writeDataUri();

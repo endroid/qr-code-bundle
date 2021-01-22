@@ -21,6 +21,6 @@ class TwigControllerTest extends WebTestCase
         $client->request('GET', '/twig');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('data:image/png;base64,', $client->getResponse()->getContent());
+        $this->assertStringContainsString('data:image/png;base64,', $client->getResponse()->getContent());
     }
 }
