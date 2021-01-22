@@ -19,6 +19,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class EndroidQrCodeExtension extends Extension
 {
+    /** @param array<mixed> $configs */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = $this->getConfiguration($configs, $container);
