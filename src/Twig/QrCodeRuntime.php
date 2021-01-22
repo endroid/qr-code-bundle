@@ -40,7 +40,7 @@ final class QrCodeRuntime implements RuntimeExtensionInterface
     }
 
     /** @param array<mixed> $options */
-    public function getQrCodeReference(string $text, array $options = [], int $referenceType): string
+    public function getQrCodeReference(string $text, array $options = [], int $referenceType = UrlGeneratorInterface::ABSOLUTE_URL): string
     {
         $qrCode = $this->qrCodeFactory->create($text, $options);
 
