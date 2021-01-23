@@ -57,5 +57,7 @@ jobs:
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
         with:
-          name: coverage
-          path: tests/coverage
+          name: artifacts
+          path: |
+            tests/coverage
+            vendor/endroid/quality/application/var/log
