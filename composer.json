@@ -14,13 +14,13 @@
     "require": {
         "php": "^7.3||^8.0",
         "endroid/installer": "^1.2.2",
-        "endroid/qr-code": "^3.7.8",
+        "endroid/qr-code": "^4.0",
         "symfony/framework-bundle": "^3.4||^4.4||^5.0",
         "symfony/twig-bundle": "^3.4||^4.4||^5.0",
         "symfony/yaml": "^3.4||^4.4||^5.0"
     },
     "require-dev": {
-        "endroid/quality": "^1.3.9"
+        "endroid/quality": "dev-master"
     },
     "suggest": {
         "roave/security-advisories": "Avoids installation of package versions with vulnerabilities",
@@ -38,7 +38,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.x-dev"
+            "dev-master": "4.x-dev"
         }
     },
     "config": {

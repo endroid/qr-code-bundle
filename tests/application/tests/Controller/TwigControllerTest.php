@@ -18,8 +18,8 @@ class TwigControllerTest extends WebTestCase
     public function testDemoController()
     {
         $client = static::createClient();
-        $client->request('GET', '/twig');
 
+        $client->request('GET', '/twig');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertStringContainsString('data:image/png;base64,', $client->getResponse()->getContent());
     }

@@ -2,46 +2,31 @@
 
 declare(strict_types=1);
 
-/*
- * (c) Jeroen van den Enden <info@endroid.nl>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace Endroid\QrCodeBundle\Controller;
 
-use Endroid\QrCode\Exception\UnsupportedExtensionException;
-use Endroid\QrCode\Factory\QrCodeFactoryInterface;
-use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Builder\BuilderRegistryInterface;
 use Endroid\QrCodeBundle\Response\QrCodeResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class GenerateController
 {
-    private $qrCodeFactory;
+    /** @var BuilderRegistryInterface */
+    private $builderRegistry;
 
-    public function __construct(QrCodeFactoryInterface $qrCodeFactory)
+    public function __construct(BuilderRegistryInterface $builderRegistry)
     {
-        $this->qrCodeFactory = $qrCodeFactory;
+        $this->builderRegistry = $builderRegistry;
     }
 
-    public function __invoke(Request $request, string $text, string $extension): Response
+    public function __invoke(string $builder, string $data): Response
     {
-        $options = $request->query->all();
+        $builder = $this->builderRegistry->getBuilder($builder);
 
-        $qrCode = $this->qrCodeFactory->create($text, $options);
-
-        if ($qrCode instanceof QrCode) {
-            try {
-                $qrCode->setWriterByExtension($extension);
-            } catch (UnsupportedExtensionException $e) {
-                throw new NotFoundHttpException("Extension '$extension' is not a supported extension.");
-            }
+        if (!$builder instanceof Builder) {
+            throw new \Exception('This controller only handles Builder instances');
         }
 
-        return new QrCodeResponse($qrCode);
+        return new QrCodeResponse($builder->data($data)->build());
     }
 }

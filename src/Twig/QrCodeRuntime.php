@@ -11,52 +11,47 @@ declare(strict_types=1);
 
 namespace Endroid\QrCodeBundle\Twig;
 
-use Endroid\QrCode\Factory\QrCodeFactoryInterface;
-use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Builder\BuilderRegistryInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\RuntimeExtensionInterface;
 
 final class QrCodeRuntime implements RuntimeExtensionInterface
 {
-    private $qrCodeFactory;
+    private $builderRegistry;
     private $urlGenerator;
 
-    public function __construct(QrCodeFactoryInterface $qrCodeFactory, UrlGeneratorInterface $urlGenerator)
+    public function __construct(BuilderRegistryInterface $builderRegistry, UrlGeneratorInterface $urlGenerator)
     {
-        $this->qrCodeFactory = $qrCodeFactory;
+        $this->builderRegistry = $builderRegistry;
         $this->urlGenerator = $urlGenerator;
     }
 
-    /** @param array<mixed> $options */
-    public function qrCodeUrlFunction(string $text, array $options = []): string
+    public function qrCodeUrlFunction(string $data, string $builder = 'default'): string
     {
-        return $this->getQrCodeReference($text, $options, UrlGeneratorInterface::ABSOLUTE_URL);
+        return $this->getQrCodeReference($data, $builder, UrlGeneratorInterface::ABSOLUTE_URL);
     }
 
-    /** @param array<mixed> $options */
-    public function qrCodePathFunction(string $text, array $options = []): string
+    public function qrCodePathFunction(string $data, string $builder = 'default'): string
     {
-        return $this->getQrCodeReference($text, $options, UrlGeneratorInterface::ABSOLUTE_PATH);
+        return $this->getQrCodeReference($data, $builder, UrlGeneratorInterface::ABSOLUTE_PATH);
     }
 
-    /** @param array<mixed> $options */
-    public function getQrCodeReference(string $text, array $options = [], int $referenceType = UrlGeneratorInterface::ABSOLUTE_URL): string
+    public function getQrCodeReference(string $data, string $builder, int $referenceType): string
     {
-        $qrCode = $this->qrCodeFactory->create($text, $options);
-
-        if ($qrCode instanceof QrCode) {
-            $supportedExtensions = $qrCode->getWriter()->getSupportedExtensions();
-            $options['extension'] = current($supportedExtensions);
-        }
-
-        $options['text'] = $text;
+        $options = ['data' => $data, 'builder' => $builder];
 
         return $this->urlGenerator->generate('qr_code_generate', $options, $referenceType);
     }
 
-    /** @param array<mixed> $options */
-    public function qrCodeDataUriFunction(string $text, array $options = []): string
+    public function qrCodeDataUriFunction(string $data, string $builder = 'default'): string
     {
-        return $this->qrCodeFactory->create($text, $options)->writeDataUri();
+        $builder = $this->builderRegistry->getBuilder($builder);
+
+        if (!$builder instanceof Builder) {
+            throw new \Exception('This twig extension only handles Builder instances');
+        }
+
+        return $builder->data($data)->build()->getDataUri();
     }
 }

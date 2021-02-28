@@ -12,8 +12,8 @@ This Symfony lets you generate QR Codes using the [endroid/qr-code](https://gith
 library. It provides the following features.
 
 * Configure your defaults (like image size, default writer etc.)
-* Generate QR codes quickly from anywhere via the factory service
-* Generate QR codes directly by typing an URL like /qr-code/\<text>.png?size=300
+* Support for multiple configurations and injection via aliases
+* Generate QR codes for defined configurations via URL like /qr-code/<config>/Hello
 * Generate QR codes or URLs directly from Twig using dedicated functions
 
 ## Installation
@@ -30,46 +30,60 @@ can find the configuration files in the `.install/symfony` folder.
 
 ## Configuration
 
-The bundle makes use of a factory to create QR codes. The default parameters
-applied by the factory can optionally be overridden via the configuration.
+The bundle makes use of builders to create QR codes. The default parameters
+applied by the builder can optionally be overridden via the configuration. and
+multiple configurations (thus builders) can be defined.
 
 ```yaml
 endroid_qr_code:
-    writer: 'svg'
-    size: 300
-    margin: 10
-    foreground_color: { r: 0, g: 0, b: 0 }
-    background_color: { r: 255, g: 255, b: 255 }
-    error_correction_level: low # low, medium, quartile or high
-    encoding: UTF-8
-    label: Scan the code
-    label_font_size: 20
-    label_alignment: left # left, center or right
-    label_margin: { b: 20 }
-    logo_path: '%kernel.root_dir%/../vendor/endroid/qr-code/assets/images/symfony.png'
-    logo_width: 150
-    logo_height: 200
-    validate_result: false # checks if the result is readable
-    writer_options:
-        exclude_xml_declaration: true
+    default:
+        writer: Endroid\QrCode\Writer\PngWriter
+        data: 'This is customized QR code'
+        labelText: 'This is the label'
+    custom:
+        writer: Endroid\QrCode\Writer\SvgWriter
+        writerOptions: []
+        data: 'This is customized QR code'
+        size: 300
+        encoding: 'UTF-8'
+        errorCorrectionLevel: 'high'
+        roundBlockSizeMode: 'margin'
+        logoPath: '%kernel.project_dir%/vendor/endroid/qr-code/tests/assets/symfony.png'
+        logoResizeToWidth: 150
+        labelText: 'This is the label'
+        labelFontPath: '%kernel.project_dir%/vendor/endroid/qr-code/assets/noto_sans.otf'
+        labelFontSize: 20
+        labelAlignment: 'center'
+        validateResult: false
 ```
 
-## Generate via factory
+## Using builders
 
-Now you can retrieve the factory from the service container and create a QR
-code. You can also pass options to override defaults set by your configuration.
+Each configuration results in a builder which can be injected in your classes.
+For instance the custom builder from the example above can be injected like this
+and you can override the default configuration as follows.
 
 ```php
-$qrCode = $qrCodeFactory->create('QR Code', ['size' => 200]);
+use Endroid\QrCode\Builder\BuilderInterface;
+
+public function __construct(BuilderInterface $customBuilder)
+{
+    $result = $customBuilder
+        ->size(400)
+        ->margin(20)
+        ->build();
+}
 ```
 
 ## QR Code Response
 
 The bundle also provides a response object to ease rendering of the resulting
-image by automatically saving to string and setting the correct content type.
+image by automatically saving to contents and setting the correct content type.
 
 ```php
-$response = new QrCodeResponse($qrCode);
+use Endroid\QrCodeBundle\Response\QrCodeResponse;
+
+$response = new QrCodeResponse($result);
 ```
 
 ## Generate via URL
@@ -81,13 +95,15 @@ prefix in your routing file and pass any of the existing options via query strin
 ## Generate via Twig
 
 The bundle provides a Twig extension for generating a QR code URL, path or data
-URI. You can use the second argument of any of these functions to override any
-defaults defined by the bundle or set via your configuration.
+URI. You can use the second argument to specify the builder to use.
 
-``` twig
-<img src="{{ qr_code_path(message) }}" />
-<img src="{{ qr_code_url(message, { writer: 'eps' }) }}" />
-<img src="{{ qr_code_data_uri(message, { writer: 'svg', size: 150 }) }}" />
+```twig
+<img src="{{ qr_code_path('My QR Code') }}" />
+<img src="{{ qr_code_url('My QR Code') }}" />
+<img src="{{ qr_code_data_uri('My QR Code') }}" />
+
+{# You can specify the builder via the second parameter #}
+<img src="{{ qr_code_data_uri('My QR Code', 'custom') }}" />
 ```
 
 ## Versioning

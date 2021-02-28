@@ -15,11 +15,19 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class GenerateControllerTest extends WebTestCase
 {
+    /**
+     * @testdox QR Codes can be generated via the url
+     */
     public function testGenerateController()
     {
         $client = static::createClient();
-        $client->request('GET', '/qr-code/qr-code.png');
+
+        $client->request('GET', '/qr-code/default/test');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertSame('image/png', $client->getResponse()->headers->get('Content-Type'));
+
+        $client->request('GET', '/qr-code/custom/test');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertSame('image/svg+xml', $client->getResponse()->headers->get('Content-Type'));
     }
 }
