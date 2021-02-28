@@ -89,7 +89,7 @@ $response = new QrCodeResponse($result);
 ## Generate via URL
 
 The bundle provides a controller that allows you to generate QR codes simply
-by opening an URL like /qr-code/<builder>/<data>. You can configure the prefix
+by opening an URL like /qr-code/{builder}/{data}. You can configure the prefix
 in your routing file and pass any of the existing options via query string.
 
 ## Generate via Twig
