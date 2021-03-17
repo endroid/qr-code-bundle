@@ -66,9 +66,9 @@ and you can override the default configuration as follows.
 ```php
 use Endroid\QrCode\Builder\BuilderInterface;
 
-public function __construct(BuilderInterface $customBuilder)
+public function __construct(BuilderInterface $customQrCodeBuilder)
 {
-    $result = $customBuilder
+    $result = $customQrCodeBuilder
         ->size(400)
         ->margin(20)
         ->build();
