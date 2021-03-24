@@ -23,8 +23,7 @@
         "endroid/quality": "dev-master"
     },
     "suggest": {
-        "roave/security-advisories": "Avoids installation of package versions with vulnerabilities",
-        "symfony/security-checker": "Checks your composer.lock for vulnerabilities"
+        "roave/security-advisories": "Avoids installation of package versions with vulnerabilities"
     },
     "autoload": {
         "psr-4": {
