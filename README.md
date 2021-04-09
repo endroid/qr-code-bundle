@@ -46,7 +46,8 @@ endroid_qr_code:
         labelAlignment: 'center'
     custom:
         writer: Endroid\QrCode\Writer\SvgWriter
-        writerOptions: []
+        writerOptions:
+            exclude_xml_declaration: true # default: false
         data: 'This is customized QR code'
         size: 300
         encoding: 'UTF-8'
