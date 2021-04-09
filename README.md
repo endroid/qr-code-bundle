@@ -46,7 +46,7 @@ endroid_qr_code:
         data: 'This is customized QR code'
         size: 300
         encoding: 'UTF-8'
-        errorCorrectionLevel: 'high'
+        errorCorrectionLevel: 'low' # 'low', 'medium', 'quartile', or 'high'
         roundBlockSizeMode: 'margin'
         logoPath: '%kernel.project_dir%/vendor/endroid/qr-code/tests/assets/symfony.png'
         logoResizeToWidth: 150
