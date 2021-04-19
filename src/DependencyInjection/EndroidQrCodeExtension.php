@@ -70,6 +70,7 @@ class EndroidQrCodeExtension extends Extension
                     break;
                 case 'foregroundColor':
                 case 'backgroundColor':
+                case 'labelTextColor':
                     $options[$name] = new Definition(Color::class, $value);
                     break;
                 case 'labelFontPath':
