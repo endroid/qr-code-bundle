@@ -8,8 +8,8 @@
 [![Monthly Downloads](http://img.shields.io/packagist/dm/endroid/qr-code-bundle.svg)](https://packagist.org/packages/endroid/qr-code-bundle)
 [![License](http://img.shields.io/packagist/l/endroid/qr-code-bundle.svg)](https://packagist.org/packages/endroid/qr-code-bundle)
 
-This Symfony lets you generate QR Codes using the [endroid/qr-code](https://github.com/endroid/QrCode)
-library. It provides the following features.
+This Symfony bundle lets you generate QR Codes using the [endroid/qr-code](https://github.com/endroid/QrCode)
+library. It provides the following features:
 
 * Configure your defaults (like image size, default writer etc.)
 * Support for multiple configurations and injection via aliases
@@ -39,21 +39,22 @@ endroid_qr_code:
     default:
         writer: Endroid\QrCode\Writer\PngWriter
         data: 'This is customized QR code'
-        labelText: 'This is the label'
-    custom:
-        writer: Endroid\QrCode\Writer\SvgWriter
-        writerOptions: []
-        data: 'This is customized QR code'
-        size: 300
-        encoding: 'UTF-8'
-        errorCorrectionLevel: 'high'
-        roundBlockSizeMode: 'margin'
-        logoPath: '%kernel.project_dir%/vendor/endroid/qr-code/tests/assets/symfony.png'
-        logoResizeToWidth: 150
+        # Label is not implemented for SvgWriter
         labelText: 'This is the label'
         labelFontPath: '%kernel.project_dir%/vendor/endroid/qr-code/assets/noto_sans.otf'
         labelFontSize: 20
         labelAlignment: 'center'
+    custom:
+        writer: Endroid\QrCode\Writer\SvgWriter
+        writerOptions:
+            exclude_xml_declaration: true # default: false
+        data: 'This is customized QR code'
+        size: 300
+        encoding: 'UTF-8'
+        errorCorrectionLevel: 'low' # 'low', 'medium', 'quartile', or 'high'
+        roundBlockSizeMode: 'margin'
+        logoPath: '%kernel.project_dir%/vendor/endroid/qr-code/tests/assets/symfony.png'
+        logoResizeToWidth: 150
         validateResult: false
 ```
 
