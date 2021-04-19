@@ -6,6 +6,7 @@ namespace Endroid\QrCodeBundle\DependencyInjection;
 
 use Endroid\QrCode\Builder\BuilderInterface;
 use Endroid\QrCode\Builder\BuilderRegistryInterface;
+use Endroid\QrCode\Color\Color;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelInterface;
 use Endroid\QrCode\Label\Alignment\LabelAlignmentInterface;
@@ -66,6 +67,10 @@ class EndroidQrCodeExtension extends Extension
                     break;
                 case 'roundBlockSizeMode':
                     $options[$name] = new Definition(str_replace('Interface', ucfirst($value), RoundBlockSizeModeInterface::class));
+                    break;
+                case 'foregroundColor':
+                case 'backgroundColor':
+                    $options[$name] = new Definition(Color::class, $value);
                     break;
                 case 'labelFontPath':
                     $labelFontSize = $builderConfig['labelFontSize'] ?? 16;
