@@ -1,4 +1,6 @@
 qr_code_generate:
     path: /{builder}/{data}
+    requirements:
+        data: "[\\w\\W]+"
     defaults:
         _controller: Endroid\QrCodeBundle\Controller\GenerateController
