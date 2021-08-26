@@ -107,6 +107,27 @@ URI. You can use the second argument to specify the builder to use.
 <img src="{{ qr_code_data_uri('My QR Code', 'custom') }}" />
 ```
 
+## Disable auto-configuration
+    
+If you don't need one of the generated files automatically created by installer, it can be disabled using [`endroid/installer`](https://github.com/endroid/installer) configuration:
+    
+`composer.json`:
+    
+```json
+{
+    "extra": {
+        "endroid": {
+            "installer": {
+                "enabled": true,
+                "exclude": [
+                    "endroid/qr-code-bundle"
+                ]
+            }
+        }
+    }
+}
+```
+    
 ## Versioning
 
 Version numbers follow the MAJOR.MINOR.PATCH scheme. Backwards compatibility
