@@ -28,6 +28,9 @@ When you use Symfony, the [installer](https://github.com/endroid/installer)
 makes sure that services are automatically wired. If this is not the case you
 can find the configuration files in the `.install/symfony` folder.
 
+If you don't want the installer to create the auto-configuration files, it can
+be disabled as described [here](https://github.com/endroid/installer#configuration).
+
 ## Configuration
 
 The bundle makes use of builders to create QR codes. The default parameters
@@ -105,27 +108,6 @@ URI. You can use the second argument to specify the builder to use.
 
 {# You can specify the builder via the second parameter #}
 <img src="{{ qr_code_data_uri('My QR Code', 'custom') }}" />
-```
-
-## Disable auto-configuration
-    
-If you don't need one of the generated files automatically created by installer, it can be disabled using [`endroid/installer`](https://github.com/endroid/installer) configuration:
-    
-`composer.json`:
-    
-```json
-{
-    "extra": {
-        "endroid": {
-            "installer": {
-                "enabled": true,
-                "exclude": [
-                    "endroid/qr-code-bundle"
-                ]
-            }
-        }
-    }
-}
 ```
     
 ## Versioning
