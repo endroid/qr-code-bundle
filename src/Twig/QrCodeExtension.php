@@ -16,7 +16,7 @@ use Twig\TwigFunction;
 
 final class QrCodeExtension extends AbstractExtension
 {
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('qr_code_path', [QrCodeRuntime::class, 'qrCodePathFunction']),
