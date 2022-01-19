@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Endroid\QrCodeBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -14,12 +15,12 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('endroid_qr_code');
 
-        $treeBuilder
-            ->getRootNode()
-            ->useAttributeAsKey('name')
-            ->prototype('array')
-            ->prototype('variable')
-        ;
+        /** @var ArrayNodeDefinition $node */
+        $node = $treeBuilder->getRootNode();
+
+        $node->useAttributeAsKey('name');
+        $node->prototype('array');
+        $node->prototype('variable');
 
         return $treeBuilder;
     }
