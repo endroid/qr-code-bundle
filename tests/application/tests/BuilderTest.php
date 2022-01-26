@@ -24,14 +24,10 @@ class BuilderTest extends WebTestCase
      */
     public function testBuilderRegistry()
     {
-        if (Kernel::VERSION_ID < 41000) {
-            $this->markTestSkipped('This test can be performed from Symfony 4.1');
-        }
-
         self::bootKernel();
 
         /** @var BuilderRegistryInterface $builderRegistry */
-        $builderRegistry = self::$container->get(BuilderRegistryInterface::class);
+        $builderRegistry = self::getContainer()->get(BuilderRegistryInterface::class);
 
         $defaultBuilder = $builderRegistry->getBuilder('default');
         $this->assertInstanceOf(Builder::class, $defaultBuilder);
@@ -52,7 +48,7 @@ class BuilderTest extends WebTestCase
         self::bootKernel();
 
         /** @var BuilderRegistryInterface $builderRegistry */
-        $builderRegistry = self::$container->get(BuilderRegistryInterface::class);
+        $builderRegistry = self::getContainer()->get(BuilderRegistryInterface::class);
 
         $customBuilder = $builderRegistry->getBuilder('custom');
         $result = $customBuilder->build();
