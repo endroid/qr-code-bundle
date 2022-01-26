@@ -15,7 +15,6 @@ use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Builder\BuilderRegistryInterface;
 use Endroid\QrCode\Writer\Result\SvgResult;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpKernel\Kernel;
 
 class BuilderTest extends WebTestCase
 {
@@ -26,8 +25,14 @@ class BuilderTest extends WebTestCase
     {
         self::bootKernel();
 
+        if (method_exists($this, 'getContainer')) {
+            $container = $this->getContainer();
+        } else {
+            $container = static::$container;
+        }
+
         /** @var BuilderRegistryInterface $builderRegistry */
-        $builderRegistry = self::getContainer()->get(BuilderRegistryInterface::class);
+        $builderRegistry = $container->get(BuilderRegistryInterface::class);
 
         $defaultBuilder = $builderRegistry->getBuilder('default');
         $this->assertInstanceOf(Builder::class, $defaultBuilder);
@@ -41,14 +46,16 @@ class BuilderTest extends WebTestCase
      */
     public function testBuilderDefault()
     {
-        if (Kernel::VERSION_ID < 41000) {
-            $this->markTestSkipped('This test can be performed from Symfony 4.1');
-        }
-
         self::bootKernel();
 
+        if (method_exists($this, 'getContainer')) {
+            $container = $this->getContainer();
+        } else {
+            $container = static::$container;
+        }
+
         /** @var BuilderRegistryInterface $builderRegistry */
-        $builderRegistry = self::getContainer()->get(BuilderRegistryInterface::class);
+        $builderRegistry = $container->get(BuilderRegistryInterface::class);
 
         $customBuilder = $builderRegistry->getBuilder('custom');
         $result = $customBuilder->build();
