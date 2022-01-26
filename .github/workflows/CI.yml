@@ -46,7 +46,7 @@ jobs:
       - name: Test against highest versions
         run: |
           vendor/bin/unit-test
-          vendor/bin/functional-test
+          vendor/bin/functional-test ^6.0
 
       - name: Test against lowest versions
         run: |
