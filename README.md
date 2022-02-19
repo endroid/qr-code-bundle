@@ -22,7 +22,7 @@ Use [Composer](https://getcomposer.org/) to install the library. Also make sure 
 [GD extension](https://www.php.net/manual/en/book.image.php) if you want to generate images.
 
 ``` bash
-$ composer require endroid/qr-code-bundle
+composer require endroid/qr-code-bundle
 ```
 
 When you use Symfony, the [installer](https://github.com/endroid/installer)
