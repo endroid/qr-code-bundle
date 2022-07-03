@@ -18,10 +18,27 @@ class Configuration implements ConfigurationInterface
         /** @var ArrayNodeDefinition $node */
         $node = $treeBuilder->getRootNode();
 
+        $node
+            ->beforeNormalization()
+                ->ifTrue(fn (array $config) => !$this->hasMultipleConfigurations($config))
+                ->then(fn (array $value) => ['default' => $value]);
+
         $node->useAttributeAsKey('name');
         $node->prototype('array');
         $node->prototype('variable');
 
         return $treeBuilder;
+    }
+
+    /** @param array<mixed> $config */
+    private function hasMultipleConfigurations(array $config): bool
+    {
+        foreach ($config as $value) {
+            if (!is_array($value)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
