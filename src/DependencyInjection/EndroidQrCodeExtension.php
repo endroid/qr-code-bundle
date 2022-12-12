@@ -27,7 +27,7 @@ class EndroidQrCodeExtension extends Extension
     /**
      * @psalm-suppress ReservedWord
      *
-     * @param array<mixed> $configs
+     * @param array<string, mixed> $configs
      */
     public function load(array $configs, ContainerBuilder $container): void
     {

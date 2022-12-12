@@ -2,13 +2,6 @@
 
 declare(strict_types=1);
 
-/*
- * (c) Jeroen van den Enden <info@endroid.nl>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace Endroid\QrCodeBundle\Twig;
 
 use Endroid\QrCode\Builder\Builder;
@@ -19,13 +12,10 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 final class QrCodeRuntime implements RuntimeExtensionInterface
 {
-    private $builderRegistry;
-    private $urlGenerator;
-
-    public function __construct(BuilderRegistryInterface $builderRegistry, UrlGeneratorInterface $urlGenerator)
-    {
-        $this->builderRegistry = $builderRegistry;
-        $this->urlGenerator = $urlGenerator;
+    public function __construct(
+        private BuilderRegistryInterface $builderRegistry,
+        private UrlGeneratorInterface $urlGenerator
+    ) {
     }
 
     public function qrCodeUrlFunction(string $data, string $builder = 'default'): string

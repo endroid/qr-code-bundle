@@ -1,0 +1,4 @@
+endroid_qr_code:
+    path: /twig
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    defaults: { template:  'twig.html.twig' }

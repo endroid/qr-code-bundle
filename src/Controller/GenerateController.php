@@ -9,14 +9,11 @@ use Endroid\QrCode\Builder\BuilderRegistryInterface;
 use Endroid\QrCodeBundle\Response\QrCodeResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class GenerateController
+final class GenerateController
 {
-    /** @var BuilderRegistryInterface */
-    private $builderRegistry;
-
-    public function __construct(BuilderRegistryInterface $builderRegistry)
-    {
-        $this->builderRegistry = $builderRegistry;
+    public function __construct(
+        private BuilderRegistryInterface $builderRegistry
+    ) {
     }
 
     public function __invoke(string $builder, string $data): Response

@@ -7,7 +7,7 @@ namespace Endroid\QrCodeBundle\Response;
 use Endroid\QrCode\Writer\Result\ResultInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class QrCodeResponse extends Response
+final class QrCodeResponse extends Response
 {
     public function __construct(ResultInterface $result)
     {
