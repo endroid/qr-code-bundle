@@ -22,11 +22,9 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 
-class EndroidQrCodeExtension extends Extension
+final class EndroidQrCodeExtension extends Extension
 {
     /**
-     * @psalm-suppress ReservedWord
-     *
      * @param array<string, mixed> $configs
      */
     public function load(array $configs, ContainerBuilder $container): void

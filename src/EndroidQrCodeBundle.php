@@ -6,6 +6,6 @@ namespace Endroid\QrCodeBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class EndroidQrCodeBundle extends Bundle
+final class EndroidQrCodeBundle extends Bundle
 {
 }
