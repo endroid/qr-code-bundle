@@ -46,9 +46,15 @@ final class QrCodeRuntime implements RuntimeExtensionInterface
     {
         $builder = $this->builderRegistry->getBuilder($builder);
         foreach ($options as $option => $value) {
-            if (method_exists($builder, $option)) {
-                $builder->$option($value);
+            if (!method_exists($builder, $option)) {
+                \trigger_error(
+                    "$option is not a known option of the $builder builder.",
+                    \E_USER_WARNING
+                );
+
+                continue;
             }
+            $builder->$option($value);
         }
 
         if (!$builder instanceof Builder) {
