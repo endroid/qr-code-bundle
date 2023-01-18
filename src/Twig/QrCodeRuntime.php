@@ -35,23 +35,24 @@ final class QrCodeRuntime implements RuntimeExtensionInterface
         return $this->urlGenerator->generate('qr_code_generate', $options, $referenceType);
     }
 
-    public function qrCodeDataUriFunction(string $data, string $builder = 'default', ?string $labelText = null): string
+    public function qrCodeDataUriFunction(string $data, string $builder = 'default', array $options = []): string
     {
-        $result = $this->qrCodeResultFunction($data, $builder, $labelText);
+        $result = $this->qrCodeResultFunction($data, $builder, $options);
 
         return $result->getDataUri();
     }
 
-    public function qrCodeResultFunction(string $data, string $builder = 'default', ?string $labelText = null): ResultInterface
+    public function qrCodeResultFunction(string $data, string $builder = 'default', array $options = []): ResultInterface
     {
         $builder = $this->builderRegistry->getBuilder($builder);
+        foreach ($options as $option => $value) {
+            if (method_exists($builder, $option)) {
+                $builder->$option($value);
+            }
+        }
 
         if (!$builder instanceof Builder) {
             throw new \Exception('This twig extension only handles Builder instances');
-        }
-
-        if ($labelText) {
-            $builder->labelText($labelText);
         }
 
         return $builder->data($data)->build();
