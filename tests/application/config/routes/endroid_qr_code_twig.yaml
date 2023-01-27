@@ -2,3 +2,8 @@ endroid_qr_code_twig:
     path: /twig
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
     defaults: { template: 'twig.html.twig' }
+
+endroid_qr_code_twig_invalid_option:
+    path: /twig-invalid-option
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    defaults: { template: 'twig-invalid-option.html.twig' }

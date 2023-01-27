@@ -35,6 +35,7 @@ final class QrCodeRuntime implements RuntimeExtensionInterface
         return $this->urlGenerator->generate('qr_code_generate', $options, $referenceType);
     }
 
+    /** @param array<mixed> $options */
     public function qrCodeDataUriFunction(string $data, string $builder = 'default', array $options = []): string
     {
         $result = $this->qrCodeResultFunction($data, $builder, $options);
@@ -42,17 +43,14 @@ final class QrCodeRuntime implements RuntimeExtensionInterface
         return $result->getDataUri();
     }
 
+    /** @param array<mixed> $options */
     public function qrCodeResultFunction(string $data, string $builder = 'default', array $options = []): ResultInterface
     {
         $builder = $this->builderRegistry->getBuilder($builder);
+
         foreach ($options as $option => $value) {
             if (!method_exists($builder, $option)) {
-                \trigger_error(
-                    "$option is not a known option of the $builder builder.",
-                    \E_USER_WARNING
-                );
-
-                continue;
+                throw new \Exception(sprintf('Builder option "%s" does not exist', $option));
             }
             $builder->$option($value);
         }
