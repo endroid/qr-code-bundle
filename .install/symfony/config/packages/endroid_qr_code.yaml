@@ -1,6 +1,7 @@
 endroid_qr_code:
     default:
         writer: Endroid\QrCode\Writer\PngWriter
+        writerOptions: { quality: 80 }
         size: 300
         margin: 10
         encoding: 'UTF-8'

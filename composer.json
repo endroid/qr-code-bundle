@@ -14,7 +14,7 @@
     "require": {
         "php": "^8.0",
         "endroid/installer": "^1.2.2",
-        "endroid/qr-code": "^4.7",
+        "endroid/qr-code": "^4.8",
         "symfony/framework-bundle": "^5.4||^6.0",
         "symfony/twig-bundle": "^5.4||^6.0",
         "symfony/yaml": "^5.4||^6.0"

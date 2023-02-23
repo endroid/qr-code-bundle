@@ -11,9 +11,11 @@ services:
     Endroid\QrCode\Writer\BinaryWriter: ~
     Endroid\QrCode\Writer\DebugWriter: ~
     Endroid\QrCode\Writer\EpsWriter: ~
+    Endroid\QrCode\Writer\GifWriter: ~
     Endroid\QrCode\Writer\PdfWriter: ~
     Endroid\QrCode\Writer\PngWriter: ~
     Endroid\QrCode\Writer\SvgWriter: ~
+    Endroid\QrCode\Writer\WebPWriter: ~
 
     Endroid\QrCode\Builder\Builder: ~
     Endroid\QrCode\Builder\BuilderInterface: '@Endroid\QrCode\Builder\Builder'
