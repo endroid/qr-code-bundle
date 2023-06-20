@@ -59,6 +59,7 @@ endroid_qr_code:
         roundBlockSizeMode: 'margin'
         logoPath: '%kernel.project_dir%/vendor/endroid/qr-code/tests/assets/symfony.png'
         logoResizeToWidth: 150
+        logoPunchoutBackground: true
         validateResult: false
 ```
 
