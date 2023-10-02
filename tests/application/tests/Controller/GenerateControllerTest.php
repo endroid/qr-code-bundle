@@ -6,7 +6,7 @@ namespace Endroid\QrCodeBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class GenerateControllerTest extends WebTestCase
+final class GenerateControllerTest extends WebTestCase
 {
     /**
      * @testdox QR Codes can be generated via the url

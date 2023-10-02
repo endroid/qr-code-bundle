@@ -6,7 +6,7 @@ namespace Endroid\QrCodeBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class TwigControllerTest extends WebTestCase
+final class TwigControllerTest extends WebTestCase
 {
     public function testDemoController()
     {

@@ -13,8 +13,8 @@ use Twig\Extension\RuntimeExtensionInterface;
 final class QrCodeRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
-        private BuilderRegistryInterface $builderRegistry,
-        private UrlGeneratorInterface $urlGenerator
+        private readonly BuilderRegistryInterface $builderRegistry,
+        private readonly UrlGeneratorInterface $urlGenerator
     ) {
     }
 

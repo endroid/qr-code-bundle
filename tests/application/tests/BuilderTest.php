@@ -9,12 +9,12 @@ use Endroid\QrCode\Builder\BuilderRegistryInterface;
 use Endroid\QrCode\Writer\Result\SvgResult;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class BuilderTest extends WebTestCase
+final class BuilderTest extends WebTestCase
 {
     /**
      * @testdox The builder registry contains the configured builders
      */
-    public function testBuilderRegistry()
+    public function testBuilderRegistry(): void
     {
         self::bootKernel();
 

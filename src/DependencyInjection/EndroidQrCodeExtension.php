@@ -8,11 +8,11 @@ use Endroid\QrCode\Builder\BuilderInterface;
 use Endroid\QrCode\Builder\BuilderRegistryInterface;
 use Endroid\QrCode\Color\Color;
 use Endroid\QrCode\Encoding\Encoding;
-use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelInterface;
-use Endroid\QrCode\Label\Alignment\LabelAlignmentInterface;
+use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\Label\Font\Font;
 use Endroid\QrCode\Label\Font\NotoSans;
-use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeInterface;
+use Endroid\QrCode\Label\LabelAlignment;
+use Endroid\QrCode\RoundBlockSizeMode;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
@@ -65,10 +65,10 @@ final class EndroidQrCodeExtension extends Extension
                     $options[$name] = new Definition(Encoding::class, [$value]);
                     break;
                 case 'errorCorrectionLevel':
-                    $options[$name] = new Definition(str_replace('Interface', ucfirst($value), ErrorCorrectionLevelInterface::class));
+                    $options[$name] = ErrorCorrectionLevel::from($value);
                     break;
                 case 'roundBlockSizeMode':
-                    $options[$name] = new Definition(str_replace('Interface', ucfirst($value), RoundBlockSizeModeInterface::class));
+                    $options[$name] = RoundBlockSizeMode::from($value);
                     break;
                 case 'foregroundColor':
                 case 'backgroundColor':
@@ -84,7 +84,7 @@ final class EndroidQrCodeExtension extends Extension
                     $options['labelFont'] = new Definition(Font::class, [$labelFontPath, $value]);
                     break;
                 case 'labelAlignment':
-                    $options[$name] = new Definition(str_replace('Interface', ucfirst($value), LabelAlignmentInterface::class));
+                    $options[$name] = LabelAlignment::from($value);
                     break;
                 default:
                     $options[$name] = $value;

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 final class GenerateController
 {
     public function __construct(
-        private BuilderRegistryInterface $builderRegistry
+        private readonly BuilderRegistryInterface $builderRegistry
     ) {
     }
 
