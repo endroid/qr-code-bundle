@@ -20,7 +20,7 @@
         "symfony/yaml": "^5.4||^6.4||^7.0"
     },
     "require-dev": {
-        "endroid/quality": "dev-master"
+        "endroid/quality": "dev-main"
     },
     "suggest": {
         "roave/security-advisories": "Avoids installation of package versions with vulnerabilities"
@@ -37,7 +37,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "4.x-dev"
+            "dev-main": "4.x-dev"
         }
     },
     "config": {
