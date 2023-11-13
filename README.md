@@ -104,12 +104,16 @@ The bundle provides a Twig extension for generating a QR code URL, path or data
 URI. You can use the second argument to specify the builder to use.
 
 ```twig
-<img src="{{ qr_code_path('My QR Code') }}" />
-<img src="{{ qr_code_url('My QR Code') }}" />
-<img src="{{ qr_code_data_uri('My QR Code') }}" />
+<img src="{{ qr_code_path('My QR Code') }}">
+<img src="{{ qr_code_url('My QR Code') }}">
+<img src="{{ qr_code_data_uri('My QR Code') }}">
 
 {# You can specify the builder via the second parameter #}
-<img src="{{ qr_code_data_uri('My QR Code', 'custom') }}" />
+<img src="{{ qr_code_data_uri('My QR Code', 'custom') }}">
+
+{# Access the QR code's width & height via the `matrix` object #}
+{% set qrCode = qr_code_result('My QR Code') %}
+<img src="{{ qrCode.dataUri }}" width="{{ qrCode.matrix.outerSize }}" height="{{ qrCode.matrix.outerSize }}" alt="My QR Code">
 ```
     
 ## Versioning
