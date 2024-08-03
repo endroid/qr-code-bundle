@@ -57,6 +57,7 @@ final class EndroidQrCodeExtension extends Extension
 
         $options = [];
         foreach ($builderConfig as $name => $value) {
+            $name = $this->toCamelCase($name);
             switch ($name) {
                 case 'writer':
                     $options[$name] = new Reference($value);
@@ -104,5 +105,10 @@ final class EndroidQrCodeExtension extends Extension
         }
 
         return $builderDefinition;
+    }
+
+    private function toCamelCase(string $anyCase): string
+    {
+        return lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $anyCase))));
     }
 }

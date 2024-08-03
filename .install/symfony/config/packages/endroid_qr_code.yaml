@@ -4,6 +4,6 @@ endroid_qr_code:
         size: 300
         margin: 10
         encoding: 'UTF-8'
-        errorCorrectionLevel: 'low'
-        roundBlockSizeMode: 'margin'
-        validateResult: false
+        error_correction_level: 'low'
+        round_block_size_mode: 'margin'
+        validate_result: false
