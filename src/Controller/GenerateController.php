@@ -9,21 +9,21 @@ use Endroid\QrCode\Builder\BuilderRegistryInterface;
 use Endroid\QrCodeBundle\Response\QrCodeResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-final class GenerateController
+final readonly class GenerateController
 {
     public function __construct(
-        private readonly BuilderRegistryInterface $builderRegistry
+        private BuilderRegistryInterface $builderRegistry,
     ) {
     }
 
     public function __invoke(string $builder, string $data): Response
     {
-        $builder = $this->builderRegistry->getBuilder($builder);
+        $builder = $this->builderRegistry->get($builder);
 
         if (!$builder instanceof Builder) {
             throw new \Exception('This controller only handles Builder instances');
         }
 
-        return new QrCodeResponse($builder->data($data)->build());
+        return new QrCodeResponse($builder->build(data: $data));
     }
 }
