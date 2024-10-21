@@ -18,6 +18,6 @@ final class TwigControllerTest extends WebTestCase
 
         $client->request('GET', '/twig-invalid-option');
         $this->assertEquals(500, $client->getResponse()->getStatusCode());
-        $this->assertMatchesRegularExpression('#Builder option.*does not exist#', $client->getResponse()->getContent());
+        $this->assertMatchesRegularExpression('#Unknown named parameter \$invalidOption#', $client->getResponse()->getContent());
     }
 }
