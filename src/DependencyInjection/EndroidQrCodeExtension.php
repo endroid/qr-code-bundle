@@ -10,7 +10,7 @@ use Endroid\QrCode\Color\Color;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\Label\Font\Font;
-use Endroid\QrCode\Label\Font\NotoSans;
+use Endroid\QrCode\Label\Font\OpenSans;
 use Endroid\QrCode\Label\LabelAlignment;
 use Endroid\QrCode\RoundBlockSizeMode;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -81,7 +81,7 @@ final class EndroidQrCodeExtension extends Extension
                     $arguments['labelFont'] = new Definition(Font::class, [$value, $labelFontSize]);
                     break;
                 case 'labelFontSize':
-                    $labelFontPath = $builderConfig['labelFontPath'] ?? (new NotoSans())->getPath();
+                    $labelFontPath = $builderConfig['labelFontPath'] ?? (new OpenSans())->getPath();
                     $arguments['labelFont'] = new Definition(Font::class, [$labelFontPath, $value]);
                     break;
                 case 'labelAlignment':

@@ -7,13 +7,12 @@ namespace Endroid\QrCodeBundle\Tests;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Builder\BuilderRegistryInterface;
 use Endroid\QrCode\Writer\Result\SvgResult;
+use PHPUnit\Framework\Attributes\TestDox;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 final class BuilderTest extends WebTestCase
 {
-    /**
-     * @testdox The builder registry contains the configured builders
-     */
+    #[TestDox('The builder registry contains the configured builders')]
     public function testBuilderRegistry(): void
     {
         self::bootKernel();
@@ -27,16 +26,14 @@ final class BuilderTest extends WebTestCase
         /** @var BuilderRegistryInterface $builderRegistry */
         $builderRegistry = $container->get(BuilderRegistryInterface::class);
 
-        $defaultBuilder = $builderRegistry->getBuilder('default');
+        $defaultBuilder = $builderRegistry->get('default');
         $this->assertInstanceOf(Builder::class, $defaultBuilder);
 
-        $customBuilder = $builderRegistry->getBuilder('custom');
+        $customBuilder = $builderRegistry->get('custom');
         $this->assertInstanceOf(Builder::class, $customBuilder);
     }
 
-    /**
-     * @testdox Builder can generate QR code
-     */
+    #[TestDox('The builder can generate a QR code')]
     public function testBuilderDefault()
     {
         self::bootKernel();
@@ -50,7 +47,7 @@ final class BuilderTest extends WebTestCase
         /** @var BuilderRegistryInterface $builderRegistry */
         $builderRegistry = $container->get(BuilderRegistryInterface::class);
 
-        $customBuilder = $builderRegistry->getBuilder('custom');
+        $customBuilder = $builderRegistry->get('custom');
         $result = $customBuilder->build();
 
         $this->assertInstanceOf(SvgResult::class, $result);

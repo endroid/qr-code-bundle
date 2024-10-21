@@ -48,17 +48,12 @@ final readonly class QrCodeRuntime implements RuntimeExtensionInterface
     {
         $builder = $this->builderRegistry->get($builder);
 
-        foreach ($options as $option => $value) {
-            if (!method_exists($builder, $option)) {
-                throw new \Exception(sprintf('Builder option "%s" does not exist', $option));
-            }
-            $builder->$option($value);
-        }
-
         if (!$builder instanceof Builder) {
             throw new \Exception('This twig extension only handles Builder instances');
         }
 
-        return $builder->build(data: $data);
+        $options['data'] = $data;
+
+        return $builder->build(...$options);
     }
 }

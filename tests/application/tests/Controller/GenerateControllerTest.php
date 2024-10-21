@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Endroid\QrCodeBundle\Tests;
 
+use PHPUnit\Framework\Attributes\TestDox;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 final class GenerateControllerTest extends WebTestCase
 {
-    /**
-     * @testdox QR Codes can be generated via the url
-     */
+    #[TestDox('QR Codes can be generated via the url')]
     public function testGenerateController()
     {
         $client = static::createClient();
