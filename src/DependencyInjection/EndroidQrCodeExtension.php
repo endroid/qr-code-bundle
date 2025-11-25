@@ -99,9 +99,7 @@ final class EndroidQrCodeExtension extends Extension
 
         $container->setDefinition($id, $builderDefinition);
 
-        if (method_exists($container, 'registerAliasForArgument')) {
-            $container->registerAliasForArgument($id, BuilderInterface::class, $builderName.'QrCodeBuilder')->setPublic(false);
-        }
+        $container->registerAliasForArgument($id, BuilderInterface::class, $builderName.'QrCodeBuilder')->setPublic(false);
 
         return $builderDefinition;
     }

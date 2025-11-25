@@ -12,12 +12,12 @@
         }
     ],
     "require": {
-        "php": "^8.2",
-        "endroid/installer": "^1.2.2",
-        "endroid/qr-code": "^6.0.1",
-        "symfony/framework-bundle": "^5.4||^6.4||^7.0",
-        "symfony/twig-bundle": "^5.4||^6.4||^7.0",
-        "symfony/yaml": "^5.4||^6.4||^7.0"
+        "php": "^8.4",
+        "endroid/installer": "^1.5",
+        "endroid/qr-code": "^6.1.0",
+        "symfony/framework-bundle": "^6.4||^7.4||^8.0",
+        "symfony/twig-bundle": "^6.4||^7.4||^8.0",
+        "symfony/yaml": "^6.4||^7.4||^8.0"
     },
     "require-dev": {
         "endroid/quality": "dev-main"
