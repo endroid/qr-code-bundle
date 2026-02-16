@@ -77,11 +77,11 @@ final class EndroidQrCodeExtension extends Extension
                     $arguments[$name] = new Definition(Color::class, $value);
                     break;
                 case 'labelFontPath':
-                    $labelFontSize = $builderConfig['labelFontSize'] ?? 16;
+                    $labelFontSize = $builderConfig['label_font_size'] ?? 16;
                     $arguments['labelFont'] = new Definition(Font::class, [$value, $labelFontSize]);
                     break;
                 case 'labelFontSize':
-                    $labelFontPath = $builderConfig['labelFontPath'] ?? (new OpenSans())->getPath();
+                    $labelFontPath = $builderConfig['label_font_path'] ?? (new OpenSans())->getPath();
                     $arguments['labelFont'] = new Definition(Font::class, [$labelFontPath, $value]);
                     break;
                 case 'labelAlignment':
