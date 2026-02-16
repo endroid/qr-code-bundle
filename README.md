@@ -43,7 +43,9 @@ endroid_qr_code:
     default:
         writer: Endroid\QrCode\Writer\PngWriter
         data: 'This is customized QR code'
-        # Label is not implemented for SvgWriter
+        logo_path: '%kernel.project_dir%/vendor/endroid/qr-code/tests/assets/symfony.png'
+        logo_resize_to_width: 150
+        logo_punchout_background: true # only supported by PngWriter
         label_text: 'This is the label'
         label_font_path: '%kernel.project_dir%/vendor/endroid/qr-code/assets/noto_sans.otf'
         label_font_size: 20
@@ -57,9 +59,6 @@ endroid_qr_code:
         encoding: 'UTF-8'
         error_correction_level: 'low' # 'low', 'medium', 'quartile', or 'high'
         round_block_size_mode: 'margin'
-        logo_path: '%kernel.project_dir%/vendor/endroid/qr-code/tests/assets/symfony.png'
-        logo_resize_to_width: 150
-        logo_punchout_background: true
         validate_result: false
 ```
 
