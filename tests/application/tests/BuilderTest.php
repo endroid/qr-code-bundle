@@ -17,20 +17,16 @@ final class BuilderTest extends WebTestCase
     {
         self::bootKernel();
 
-        if (method_exists($this, 'getContainer')) {
-            $container = $this->getContainer();
-        } else {
-            $container = static::$container;
-        }
+        $container = static::getContainer();
 
         /** @var BuilderRegistryInterface $builderRegistry */
         $builderRegistry = $container->get(BuilderRegistryInterface::class);
 
         $defaultBuilder = $builderRegistry->get('default');
-        $this->assertInstanceOf(Builder::class, $defaultBuilder);
+        static::assertInstanceOf(Builder::class, $defaultBuilder);
 
         $customBuilder = $builderRegistry->get('custom');
-        $this->assertInstanceOf(Builder::class, $customBuilder);
+        static::assertInstanceOf(Builder::class, $customBuilder);
     }
 
     #[TestDox('The builder can generate a QR code')]
@@ -38,11 +34,7 @@ final class BuilderTest extends WebTestCase
     {
         self::bootKernel();
 
-        if (method_exists($this, 'getContainer')) {
-            $container = $this->getContainer();
-        } else {
-            $container = static::$container;
-        }
+        $container = static::getContainer();
 
         /** @var BuilderRegistryInterface $builderRegistry */
         $builderRegistry = $container->get(BuilderRegistryInterface::class);
@@ -50,6 +42,6 @@ final class BuilderTest extends WebTestCase
         $customBuilder = $builderRegistry->get('custom');
         $result = $customBuilder->build();
 
-        $this->assertInstanceOf(SvgResult::class, $result);
+        static::assertInstanceOf(SvgResult::class, $result);
     }
 }

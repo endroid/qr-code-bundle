@@ -1,6 +1,6 @@
 name: CI
 
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
@@ -10,14 +10,14 @@ jobs:
         php-versions: ['8.4', '8.5']
       fail-fast: false
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: gd, mbstring, zip
           ini-values: max_execution_time=600, memory_limit=-1
           tools: composer:v2
-          coverage: xdebug
+          coverage: pcov
         env:
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -26,7 +26,7 @@ jobs:
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache composer dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ steps.composercache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -47,8 +47,6 @@ jobs:
 
       - name: Check code quality
         run: vendor/bin/code-quality
-        env:
-          PHP_CS_FIXER_IGNORE_ENV: 1
 
       - name: Test against lowest versions
         run: |
@@ -58,13 +56,13 @@ jobs:
 
       - name: Archive logs
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: logs-php-${{ matrix.php-versions }}
           path: vendor/endroid/quality/application/var/log
 
       - name: Archive code coverage results
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: coverage-php-${{ matrix.php-versions }}
           path: tests/coverage

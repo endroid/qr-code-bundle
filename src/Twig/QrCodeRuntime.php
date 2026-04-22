@@ -15,8 +15,7 @@ final readonly class QrCodeRuntime implements RuntimeExtensionInterface
     public function __construct(
         private BuilderRegistryInterface $builderRegistry,
         private UrlGeneratorInterface $urlGenerator,
-    ) {
-    }
+    ) {}
 
     public function qrCodeUrlFunction(string $data, string $builder = 'default'): string
     {
@@ -44,8 +43,11 @@ final readonly class QrCodeRuntime implements RuntimeExtensionInterface
     }
 
     /** @param array<mixed> $options */
-    public function qrCodeResultFunction(string $data, string $builder = 'default', array $options = []): ResultInterface
-    {
+    public function qrCodeResultFunction(
+        string $data,
+        string $builder = 'default',
+        array $options = [],
+    ): ResultInterface {
         $builder = $this->builderRegistry->get($builder);
 
         if (!$builder instanceof Builder) {

@@ -13,8 +13,7 @@ final readonly class GenerateController
 {
     public function __construct(
         private BuilderRegistryInterface $builderRegistry,
-    ) {
-    }
+    ) {}
 
     public function __invoke(string $builder, string $data): Response
     {

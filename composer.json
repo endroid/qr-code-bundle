@@ -1,7 +1,14 @@
 {
     "name": "endroid/qr-code-bundle",
     "description": "Endroid QR Code Bundle",
-    "keywords": ["endroid", "qr", "code", "symfony", "bundle", "php"],
+    "keywords": [
+        "endroid",
+        "qr",
+        "code",
+        "symfony",
+        "bundle",
+        "php"
+    ],
     "homepage": "https://github.com/endroid/qr-code-bundle",
     "type": "symfony-bundle",
     "license": "MIT",
@@ -13,11 +20,9 @@
     ],
     "require": {
         "php": "^8.4",
-        "endroid/installer": "^1.5",
         "endroid/qr-code": "^6.1.0",
         "symfony/framework-bundle": "^6.4||^7.4||^8.0",
-        "symfony/twig-bundle": "^6.4||^7.4||^8.0",
-        "symfony/yaml": "^6.4||^7.4||^8.0"
+        "symfony/twig-bundle": "^6.4||^7.4||^8.0"
     },
     "require-dev": {
         "endroid/quality": "dev-main"
@@ -37,13 +42,13 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "6.x-dev"
+            "dev-main": "7.x-dev"
         }
     },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "endroid/installer": true
+            "carthage-software/mago": true
         }
     }
 }

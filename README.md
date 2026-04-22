@@ -8,7 +8,7 @@
 [![Monthly Downloads](http://img.shields.io/packagist/dm/endroid/qr-code-bundle.svg)](https://packagist.org/packages/endroid/qr-code-bundle)
 [![License](http://img.shields.io/packagist/l/endroid/qr-code-bundle.svg)](https://packagist.org/packages/endroid/qr-code-bundle)
 
-This Symfony bundle lets you generate QR Codes using the [endroid/qr-code](https://github.com/endroid/QrCode)
+This Symfony bundle lets you generate QR Codes using the [endroid/qr-code](https://github.com/endroid/qr-code)
 library. It provides the following features:
 
 * Configure your defaults (like image size, default writer etc.)
@@ -25,48 +25,59 @@ Use [Composer](https://getcomposer.org/) to install the library. Also make sure 
 composer require endroid/qr-code-bundle
 ```
 
-When you use Symfony, the [installer](https://github.com/endroid/installer)
-makes sure that services are automatically wired. If this is not the case you
-can find the configuration files in the `.install/symfony` folder.
+### Route Configuration
 
-If you don't want the installer to create the auto-configuration files, it can
-be disabled as described [here](https://github.com/endroid/installer#configuration).
-
-## Configuration
-
-The bundle makes use of builders to create QR codes. The default parameters
-applied by the builder can optionally be overridden via the configuration. and
-multiple configurations (thus builders) can be defined.
+By default the bundle registers a controller that generates QR codes via the URL
+`/qr-code/{builder}/{data}`. If you only use QR codes programmatically or via Twig
+and don't need the route, you can disable it. You can also set a custom prefix.
 
 ```yaml
 endroid_qr_code:
-    default:
-        writer: Endroid\QrCode\Writer\PngWriter
-        data: 'This is customized QR code'
-        logo_path: '%kernel.project_dir%/vendor/endroid/qr-code/tests/assets/symfony.png'
-        logo_resize_to_width: 150
-        logo_punchout_background: true # only supported by PngWriter
-        label_text: 'This is the label'
-        label_font_path: '%kernel.project_dir%/vendor/endroid/qr-code/assets/noto_sans.otf'
-        label_font_size: 20
-        label_alignment: 'center'
-    custom:
-        writer: Endroid\QrCode\Writer\SvgWriter
-        writer_options:
-            exclude_xml_declaration: true # default: false
-        data: 'This is customized QR code'
-        size: 300
-        encoding: 'UTF-8'
-        error_correction_level: 'low' # 'low', 'medium', 'quartile', or 'high'
-        round_block_size_mode: 'margin'
-        validate_result: false
+    route_enabled: true
+    route_prefix: '/my-custom-prefix'
 ```
 
-## Using builders
+This makes the route available at `/my-custom-prefix/{builder}/{data}`.
 
-Each configuration results in a builder which can be injected in your classes.
-For instance the custom builder from the example above can be injected like this
-and you can override the default configuration as follows.
+## Builder Configuration
+
+The bundle makes use of builders to create QR codes. The default parameters
+applied by the builder can optionally be overridden via the configuration. And
+multiple configurations (thus builders) can be defined.
+
+Each entry under `builders` defines a named builder with its own defaults.
+When no builders are configured the bundle registers a single `default` builder.
+
+```yaml
+endroid_qr_code:
+    builders:
+        default:
+            writer: Endroid\QrCode\Writer\PngWriter
+            data: 'This is customized QR code'
+            logo_path: '%kernel.project_dir%/vendor/endroid/qr-code/tests/assets/symfony.png'
+            logo_resize_to_width: 150
+            logo_punchout_background: true # only supported by PngWriter
+            label_text: 'This is the label'
+            label_font_path: '%kernel.project_dir%/vendor/endroid/qr-code/assets/noto_sans.otf'
+            label_font_size: 20
+            label_alignment: 'center'
+        custom:
+            writer: Endroid\QrCode\Writer\SvgWriter
+            writer_options:
+                exclude_xml_declaration: true # default: false
+            data: 'This is customized QR code'
+            size: 300
+            encoding: 'UTF-8'
+            error_correction_level: 'low' # 'low', 'medium', 'quartile', or 'high'
+            round_block_size_mode: 'margin'
+            validate_result: false
+```
+
+## Using Named Builders
+
+Each builder is available for injection using its name suffixed with
+`QrCodeBuilder`. For example the `custom` builder above can be injected as
+`$customQrCodeBuilder`. You can override the configured defaults at build time:
 
 ```php
 use Endroid\QrCode\Builder\BuilderInterface;
@@ -91,13 +102,7 @@ use Endroid\QrCodeBundle\Response\QrCodeResponse;
 $response = new QrCodeResponse($result);
 ```
 
-## Generate via URL
-
-The bundle provides a controller that allows you to generate QR codes simply
-by opening an URL like /qr-code/{builder}/{data}. You can configure the prefix
-in your routing file and pass any of the existing options via query string.
-
-## Generate via Twig
+## Twig Extension
 
 The bundle provides a Twig extension for generating a QR code URL, path or data
 URI. You can use the second argument to specify the builder to use.
@@ -114,6 +119,8 @@ URI. You can use the second argument to specify the builder to use.
 {% set qrCode = qr_code_result('My QR Code') %}
 <img src="{{ qrCode.dataUri }}" width="{{ qrCode.matrix.outerSize }}" />
 ```
+
+Please note that some Twig functions need the route to be enabled to function.
     
 ## Versioning
 

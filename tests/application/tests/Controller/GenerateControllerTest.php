@@ -15,16 +15,16 @@ final class GenerateControllerTest extends WebTestCase
         $client = static::createClient();
 
         $client->request('GET', '/qr-code/default/test');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertSame('image/png', $client->getResponse()->headers->get('Content-Type'));
+        static::assertSame(200, $client->getResponse()->getStatusCode());
+        static::assertSame('image/png', $client->getResponse()->headers->get('Content-Type'));
 
         $client->request('GET', '/qr-code/custom/test');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertSame('image/svg+xml', $client->getResponse()->headers->get('Content-Type'));
+        static::assertSame(200, $client->getResponse()->getStatusCode());
+        static::assertSame('image/svg+xml', $client->getResponse()->headers->get('Content-Type'));
 
         $client->request('GET', '/qr-code/debug/test');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertSame('text/plain; charset=UTF-8', $client->getResponse()->headers->get('Content-Type'));
-        $this->assertStringContainsString('Encoding: ISO-8859-1', $client->getResponse()->getContent());
+        static::assertSame(200, $client->getResponse()->getStatusCode());
+        static::assertSame('text/plain; charset=UTF-8', $client->getResponse()->headers->get('Content-Type'));
+        static::assertStringContainsString('Encoding: ISO-8859-1', $client->getResponse()->getContent());
     }
 }
