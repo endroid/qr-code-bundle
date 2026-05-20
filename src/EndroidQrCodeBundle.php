@@ -49,7 +49,12 @@ final class EndroidQrCodeBundle extends AbstractBundle
 
         $children->scalarNode('route_prefix')->defaultValue('/qr-code');
         $children->booleanNode('route_enabled')->defaultTrue();
-        $children->arrayNode('builders')->useAttributeAsKey('name')->arrayPrototype()->variablePrototype();
+        $children
+            ->arrayNode('builders')
+            ->useAttributeAsKey('name')
+            ->arrayPrototype()
+            ->useAttributeAsKey('name')
+            ->variablePrototype();
     }
 
     #[\Override]
