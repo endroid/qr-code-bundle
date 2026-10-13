@@ -49,6 +49,7 @@ final class EndroidQrCodeBundle extends AbstractBundle
 
         $children->scalarNode('route_prefix')->defaultValue('/qr-code');
         $children->booleanNode('route_enabled')->defaultTrue();
+        $children->integerNode('route_priority')->defaultValue(0);
         $children
             ->arrayNode('builders')
             ->useAttributeAsKey('name')
@@ -106,7 +107,7 @@ final class EndroidQrCodeBundle extends AbstractBundle
             // This ensures routes work on all Symfony versions without user configuration
             $services
                 ->set('endroid_qr_code.route_loader', QrCodeRouteLoader::class)
-                ->args(['', $routePrefix])
+                ->args(['', $routePrefix, $config['route_priority'] ?? 0])
                 ->tag('routing.route_loader');
         }
 

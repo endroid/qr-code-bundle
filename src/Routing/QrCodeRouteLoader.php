@@ -14,6 +14,7 @@ final readonly class QrCodeRouteLoader
     public function __construct(
         private string $originalResource,
         private string $routePrefix,
+        private int $routePriority = 0,
     ) {}
 
     public function __invoke(LoaderInterface $loader, ?string $_env): RouteCollection
@@ -30,7 +31,7 @@ final readonly class QrCodeRouteLoader
                 ['data' => '[\w\W]+'],
             );
             $route->setOption('utf8', true);
-            $collection->add('qr_code_generate', $route);
+            $collection->add('qr_code_generate', $route, $this->routePriority);
         }
 
         return $collection;
