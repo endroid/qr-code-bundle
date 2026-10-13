@@ -39,6 +39,18 @@ endroid_qr_code:
 
 This makes the route available at `/my-custom-prefix/{builder}/{data}`.
 
+The generated route has priority `0` by default, preserving the existing route order.
+If an application catch-all route intercepts QR code URLs, set a higher priority:
+
+```yaml
+endroid_qr_code:
+    route_priority: 1
+```
+
+Higher priorities are matched first, so choose a value above your catch-all's priority.
+This only affects the automatically registered route; an explicitly defined
+`qr_code_generate` route is left unchanged.
+
 ## Builder Configuration
 
 The bundle makes use of builders to create QR codes. The default parameters

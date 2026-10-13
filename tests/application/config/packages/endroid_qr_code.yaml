@@ -1,4 +1,5 @@
 endroid_qr_code:
+    route_priority: 1
     builders:
         default:
             writer: Endroid\QrCode\Writer\PngWriter
