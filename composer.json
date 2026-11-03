@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "php": "^8.4",
+        "php": "^8.5",
         "endroid/qr-code": "^6.1.0",
         "symfony/framework-bundle": "^6.4||^7.4||^8.0",
         "symfony/twig-bundle": "^6.4||^7.4||^8.0"

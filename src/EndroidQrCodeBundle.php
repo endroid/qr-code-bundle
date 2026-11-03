@@ -205,10 +205,9 @@ final class EndroidQrCodeBundle extends AbstractBundle
 
     private function toCamelCase(string $anyCase): string
     {
-        return lcfirst(str_replace(
-            search: ' ',
-            replace: '',
-            subject: ucwords(str_replace(search: '_', replace: ' ', subject: $anyCase)),
-        ));
+        return str_replace(search: '_', replace: ' ', subject: $anyCase)
+            |> ucwords(...)
+            |> (static fn(string $value): string => str_replace(search: ' ', replace: '', subject: $value))
+            |> lcfirst(...);
     }
 }
